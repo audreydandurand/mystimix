@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 6831fe68148f5474885f85121ea63f44
+guid: b38377825ed8b3646adad2d75b48dbc6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lanterne
-    second: {fileID: 2100000, guid: f41277a861b08934ab9de4e38c123339, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lanterne_chandelle
-    second: {fileID: 2100000, guid: faf29d0a8f436c34c86ebfa3192314dc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lanterne_vitre
-    second: {fileID: 2100000, guid: a618f23dc5a396e44bb2eea52463fe88, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
