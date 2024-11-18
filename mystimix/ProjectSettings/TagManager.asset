@@ -8,6 +8,8 @@ TagManager:
   - Table
   - Lanterne01
   - Lanterne02
+  - coridore1
+  - coridore2
   layers:
   - Default
   - TransparentFX
