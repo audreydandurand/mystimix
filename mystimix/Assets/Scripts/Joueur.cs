@@ -15,12 +15,16 @@ public class Joueur : MonoBehaviour
     public GameObject lanternedeuxieme01;
     public GameObject lanternedeuxieme02;
     public GameObject lanternedeuxieme03;
+    public GameObject lanternedeuxieme04;
+    public GameObject lampcustom3em_etage01;
+    public GameObject lampcustom3em_etage02;
     public GameObject lampcustom2em_etage01;
     public GameObject lampcustom2em_etage02;
     public GameObject lampcustom1em_etage01;
     public GameObject lampcustom1em_etage02;
     public GameObject lampcustom1em_etage03;
     public GameObject lampcustom1em_etage04;
+    public GameObject roomlighting;
 
 
 
@@ -46,12 +50,16 @@ public class Joueur : MonoBehaviour
             lanternedeuxieme01.SetActive(true);
             lanternedeuxieme02.SetActive(true);
             lanternedeuxieme03.SetActive(true);
+            lanternedeuxieme04.SetActive(true);
+            lampcustom3em_etage01.SetActive(true);
+            lampcustom3em_etage02.SetActive(true);
             lampcustom2em_etage01.SetActive(true);
             lampcustom2em_etage02.SetActive(true);
             lampcustom1em_etage01.SetActive(true);
             lampcustom1em_etage02.SetActive(true);
             lampcustom1em_etage03.SetActive(true);
             lampcustom1em_etage04.SetActive(true);
+            roomlighting.SetActive(true);
             
         }
     }
