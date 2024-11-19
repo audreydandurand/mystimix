@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 107774.86
+  m_Intensity: 22.262081
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -806,7 +806,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.77498525, b: 0.2588235, a: 1}
-  m_Intensity: 137223.2
+  m_Intensity: 28.344961
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1219,7 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 40000
+  m_Intensity: 16.33388
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -1341,7 +1341,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.8048473, b: 0.23137254, a: 1}
-  m_Intensity: 50929.582
+  m_Intensity: 20.79694
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1449,6 +1449,74 @@ Transform:
   - {fileID: 2051299830}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &289138279
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_Name
+      value: XR Device Simulator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
 --- !u!1001 &293015486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8863,10 +8931,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5003007733894062425, guid: 4fec0303b9e47ff428fd6006536b77e9,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1320243679}
     - targetCorrespondingSourceObject: {fileID: 3689499221991266216, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
       insertIndex: -1
@@ -8875,17 +8939,15 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1320243681}
+    - targetCorrespondingSourceObject: {fileID: 3689499221991266216, guid: 4fec0303b9e47ff428fd6006536b77e9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1320243687}
     - targetCorrespondingSourceObject: {fileID: 2351577199597173482, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1320243680}
   m_SourcePrefab: {fileID: 100100000, guid: 4fec0303b9e47ff428fd6006536b77e9, type: 3}
---- !u!1 &1320243675 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5003007733894062425, guid: 4fec0303b9e47ff428fd6006536b77e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1320243674}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1320243676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2351577199597173482, guid: 4fec0303b9e47ff428fd6006536b77e9,
@@ -8910,39 +8972,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1320243674}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1320243679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320243675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa55e108dc85448499ed5e376669131e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ampoule01: {fileID: 2037494691}
-  ampoule02: {fileID: 1387066346}
-  ampoule03: {fileID: 238703299}
-  ampoule04: {fileID: 126573081}
-  chandelier01: {fileID: 1487901734}
-  chandelier02: {fileID: 344577366}
-  chandelier03: {fileID: 1062104218}
-  chandelier04: {fileID: 2131236031}
-  lanternedeuxieme01: {fileID: 380569125}
-  lanternedeuxieme02: {fileID: 1750232966}
-  lanternedeuxieme03: {fileID: 1988376091}
-  lanternedeuxieme04: {fileID: 598386732}
-  lampcustom3em_etage01: {fileID: 1104933454}
-  lampcustom3em_etage02: {fileID: 1961792310}
-  lampcustom2em_etage01: {fileID: 904664025}
-  lampcustom2em_etage02: {fileID: 1611911926}
-  lampcustom1em_etage01: {fileID: 1393103265}
-  lampcustom1em_etage02: {fileID: 1060217493}
-  lampcustom1em_etage03: {fileID: 1939263143}
-  lampcustom1em_etage04: {fileID: 306022366}
-  roomlighting: {fileID: 307812975}
 --- !u!114 &1320243680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9029,79 +9058,39 @@ CharacterController:
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &1325329765
-PrefabInstance:
+--- !u!114 &1320243687
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_Name
-      value: XR Device Simulator
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320243678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa55e108dc85448499ed5e376669131e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ampoule01: {fileID: 2037494691}
+  ampoule02: {fileID: 1387066346}
+  ampoule03: {fileID: 238703299}
+  ampoule04: {fileID: 126573081}
+  chandelier01: {fileID: 1487901734}
+  chandelier02: {fileID: 344577366}
+  chandelier03: {fileID: 1062104218}
+  chandelier04: {fileID: 2131236031}
+  lanternedeuxieme01: {fileID: 380569125}
+  lanternedeuxieme02: {fileID: 1750232966}
+  lanternedeuxieme03: {fileID: 1988376091}
+  lanternedeuxieme04: {fileID: 598386732}
+  lampcustom3em_etage01: {fileID: 1104933454}
+  lampcustom3em_etage02: {fileID: 1961792310}
+  lampcustom2em_etage01: {fileID: 904664025}
+  lampcustom2em_etage02: {fileID: 1611911926}
+  lampcustom1em_etage01: {fileID: 1393103265}
+  lampcustom1em_etage02: {fileID: 1060217493}
+  lampcustom1em_etage03: {fileID: 1939263143}
+  lampcustom1em_etage04: {fileID: 306022366}
+  roomlighting: {fileID: 307812975}
 --- !u!1001 &1327893648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9684,7 +9673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 107774.86
+  m_Intensity: 16.333845
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -9806,7 +9795,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.76581746, b: 0.18431371, a: 1}
-  m_Intensity: 137223.2
+  m_Intensity: 20.796898
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -15562,7 +15551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 40000
+  m_Intensity: 16.33388
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -15684,7 +15673,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.71812236, b: 0.08018869, a: 1}
-  m_Intensity: 50929.582
+  m_Intensity: 20.79694
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -16683,7 +16672,6 @@ SceneRoots:
   - {fileID: 1913238835}
   - {fileID: 1962422042}
   - {fileID: 1886750948}
-  - {fileID: 1325329765}
   - {fileID: 306055327}
   - {fileID: 1364322477}
   - {fileID: 426941215}
@@ -16692,3 +16680,4 @@ SceneRoots:
   - {fileID: 1979167639}
   - {fileID: 1923857011}
   - {fileID: 1211055509}
+  - {fileID: 289138279}
