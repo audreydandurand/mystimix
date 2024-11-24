@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public GameObject[] ingredientPrefabs; // Array to store all ingredient prefabs
-
 public class CauldronManager : MonoBehaviour
 {
     [Header("Cauldron Settings")]
