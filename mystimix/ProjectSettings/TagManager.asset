@@ -10,6 +10,8 @@ TagManager:
   - Lanterne02
   - coridore1
   - coridore2
+  - marcher
+  - Board
   layers:
   - Default
   - TransparentFX

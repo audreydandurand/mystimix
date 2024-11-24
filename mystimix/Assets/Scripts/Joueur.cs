@@ -25,21 +25,65 @@ public class Joueur : MonoBehaviour
     public GameObject lampcustom1em_etage03;
     public GameObject lampcustom1em_etage04;
     public GameObject roomlighting;
+    public AudioSource tapisAudioSource;
+    public AudioSource livreAudioSource;
+    public AudioSource craieAudioSource;
 
+    // Son de marche
+    public GameObject marcherAudioObject; // Empty object avec le tag "marcher"
+    private AudioSource marcheAudioSource; // AudioSource attachée à marcherAudioObject
+    private Vector3 dernierePosition;
+    private bool estEnMouvement = false;
 
+    void Start()
+    {
+        // Récupère l'AudioSource depuis l'objet "marcher"
+        if (marcherAudioObject != null && marcherAudioObject.CompareTag("marcher"))
+        {
+            marcheAudioSource = marcherAudioObject.GetComponent<AudioSource>();
+        }
+        else
+        {
+            Debug.LogError("L'objet marcherAudioObject est manquant ou le tag n'est pas 'marcher'.");
+        }
 
+        dernierePosition = transform.position;
+    }
+
+    void Update()
+    {
+        // Vérifier si le joueur se déplace
+        bool joueurBouge = (transform.position - dernierePosition).sqrMagnitude > 0.001f;
+
+        if (joueurBouge && !estEnMouvement)
+        {
+            estEnMouvement = true;
+            if (marcheAudioSource != null && !marcheAudioSource.isPlaying)
+            {
+                marcheAudioSource.Play(); // Jouer le son de marche
+            }
+        }
+        else if (!joueurBouge && estEnMouvement)
+        {
+            estEnMouvement = false;
+            if (marcheAudioSource != null && marcheAudioSource.isPlaying)
+            {
+                marcheAudioSource.Pause(); // Mettre le son en pause
+            }
+        }
+
+        dernierePosition = transform.position;
+    }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Lanterne01")
+        if (other.tag == "Lanterne01")
         {
-
             ampoule01.SetActive(true);
             ampoule02.SetActive(true);
-
         }
 
-        if(other.tag == "Lanterne02")
+        if (other.tag == "Lanterne02")
         {
             ampoule03.SetActive(true);
             ampoule04.SetActive(true);
@@ -60,25 +104,69 @@ public class Joueur : MonoBehaviour
             lampcustom1em_etage03.SetActive(true);
             lampcustom1em_etage04.SetActive(true);
             roomlighting.SetActive(true);
-            
+        }
+
+        if (other.tag == "Tapis")
+        {
+            if (tapisAudioSource != null) 
+            {
+                tapisAudioSource.Play();
+            }
+        }
+        
+        if (other.tag == "Table")
+        {
+            if (livreAudioSource != null) 
+            {
+                livreAudioSource.Play();
+            }
+        }
+
+                if (other.tag == "Board")
+        {
+            if (craieAudioSource != null) 
+            {
+                craieAudioSource.Play();
+            }
         }
     }
-    
+
     public void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Lanterne01")
+        if (other.tag == "Lanterne01")
         {
             ampoule01.SetActive(false);
             ampoule02.SetActive(false);
-
         }
 
-        if(other.tag == "Lanterne02")
+        if (other.tag == "Lanterne02")
         {
             ampoule03.SetActive(false);
             ampoule04.SetActive(false);
         }
-    }
 
-   
+        if (other.tag == "Tapis")
+        {
+            if (tapisAudioSource != null) 
+            {
+                tapisAudioSource.Stop();
+            }
+        }
+
+        if (other.tag == "Table")
+        {
+            if (livreAudioSource != null) 
+            {
+                livreAudioSource.Stop();
+            }
+        }
+
+                if (other.tag == "Board")
+        {
+            if (craieAudioSource != null) 
+            {
+                craieAudioSource.Stop();
+            }
+        }
+    }
 }
