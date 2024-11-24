@@ -102,73 +102,17 @@ public class CauldronManager : MonoBehaviour
     }
 
     private void EjectIngredients()
-{
-    foreach (var ingredientID in currentIngredients)
     {
-        // Find the ingredient in the cauldron by ID (assuming it was instantiated)
-        GameObject ingredientToEject = FindIngredientObjectByID(ingredientID);
-
-        if (ingredientToEject != null)
+        foreach (var ingredientID in currentIngredients)
         {
-            // Move the ingredient to the eject point
-            ingredientToEject.transform.position = ingredientEjectPoint.position;
-
-            // Add Rigidbody and apply a force to simulate ejection
-            Rigidbody rb = ingredientToEject.GetComponent<Rigidbody>();
-            if (rb == null) rb = ingredientToEject.AddComponent<Rigidbody>();
-            rb.velocity = Vector3.zero; // Reset any existing velocity
-            rb.AddForce(Random.onUnitSphere * 2f, ForceMode.Impulse); // Eject in random direction
-
-            // Optional: Make the ingredient grabbable again if needed
-            EnableGrabbable(ingredientToEject);
+            // Create a placeholder object to represent ejected ingredient (optional)
+            GameObject dummyIngredient = new GameObject($"EjectedIngredient_{ingredientID}");
+            Rigidbody rb = dummyIngredient.AddComponent<Rigidbody>();
+            dummyIngredient.transform.position = ingredientEjectPoint.position;
+            rb.AddForce(Random.insideUnitSphere * 2f, ForceMode.Impulse); // Random direction
+            Destroy(dummyIngredient, 2f); // Clean up dummy objects
         }
     }
-
-    Debug.Log("Incorrect ingredients ejected!");
-}
-
-// Helper function to find the ingredient GameObject by its ID
-private GameObject FindIngredientObjectByID(int id)
-{
-    Ingredient[] allIngredients = FindObjectsOfType<Ingredient>(); // Get all active ingredients in the scene
-    foreach (Ingredient ingredient in allIngredients)
-    {
-        if (ingredient.id == id)
-        {
-            return ingredient.gameObject;
-        }
-    }
-    Debug.LogWarning($"Ingredient with ID {id} not found!");
-    return null;
-}
-
-// Helper function to make the ingredient grabbable again (specific to XR Grab Interactable)
-private void EnableGrabbable(GameObject ingredient)
-{
-    var grabInteractable = ingredient.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
-    if (grabInteractable != null)
-    {
-        grabInteractable.enabled = true; // Ensure it's enabled for interaction
-    }
-}
-
-
-// Helper function to find the ingredient prefab by ID
-private GameObject FindIngredientPrefabByID(int id)
-{
-    // Replace this with a reference to your ingredient prefabs
-    foreach (GameObject prefab in ingredientPrefabs)
-    {
-        Ingredient ingredient = prefab.GetComponent<Ingredient>();
-        if (ingredient != null && ingredient.id == id)
-        {
-            return prefab;
-        }
-    }
-    Debug.LogWarning($"No ingredient prefab found with ID {id}!");
-    return null;
-}
-
 
     private void EndGame()
     {
@@ -176,3 +120,4 @@ private GameObject FindIngredientPrefabByID(int id)
         // Trigger any end-game logic here (e.g., load a new scene, show a UI screen, etc.)
     }
 }
+
