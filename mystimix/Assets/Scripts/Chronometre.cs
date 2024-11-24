@@ -1,35 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Chronometre : MonoBehaviour
 {
-    private float elapsedTime = 0f; // Tracks the elapsed time
-    private bool isRunning = true; // Indicates if the chronometer is active
+    public TMP_Text timerText;
+    private float elapsedTime = 0f;
+    private bool isRunning = true;
+    public float finalTime { get; private set; } = 0f;
 
     void Update()
     {
         if (isRunning)
         {
-            // Increment elapsed time
             elapsedTime += Time.deltaTime;
-
-            // Update the timer text
             UpdateTimerDisplay();
         }
     }
 
     public void StopTimer()
     {
-        isRunning = false; // Stop the chronometer
+        isRunning = false;
     }
 
     private void UpdateTimerDisplay()
     {
-        // Format the time as minutes:seconds:milliseconds
         int minutes = Mathf.FloorToInt(elapsedTime / 60f);
         int seconds = Mathf.FloorToInt(elapsedTime % 60f);
         int milliseconds = Mathf.FloorToInt((elapsedTime * 1000) % 1000);
 
+        timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+    }
+
+    public string GetFormattedFinalTime()
+    {
+        int minutes = Mathf.FloorToInt(finalTime / 60f);
+        int seconds = Mathf.FloorToInt(finalTime % 60f);
+        int milliseconds = Mathf.FloorToInt((finalTime * 1000) % 1000);
+
+        return string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
     }
 }
