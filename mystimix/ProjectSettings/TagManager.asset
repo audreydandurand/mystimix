@@ -12,6 +12,8 @@ TagManager:
   - coridore2
   - marcher
   - Board
+  - Tapis-lumieux
+  - Livre-vole
   layers:
   - Default
   - TransparentFX

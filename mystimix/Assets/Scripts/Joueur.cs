@@ -28,12 +28,20 @@ public class Joueur : MonoBehaviour
     public AudioSource tapisAudioSource;
     public AudioSource livreAudioSource;
     public AudioSource craieAudioSource;
+    public AudioSource lanterneAudioSource;
+    public Animator bookUpDownAnimator;
 
     // Son de marche
     public GameObject marcherAudioObject; // Empty object avec le tag "marcher"
     private AudioSource marcheAudioSource; // AudioSource attachée à marcherAudioObject
     private Vector3 dernierePosition;
     private bool estEnMouvement = false;
+
+    // Référence à l'objet Tapis-lumieux
+    public GameObject tapisLumieux;
+
+    // Référence à l'objet Carpet-lumineux
+    public GameObject carpetLumieux;
 
     void Start()
     {
@@ -48,6 +56,30 @@ public class Joueur : MonoBehaviour
         }
 
         dernierePosition = transform.position;
+
+        // Assurez-vous que l'objet tapisLumieux et Carpet-lumineux sont désactivés au début
+        if (tapisLumieux != null)
+        {
+            tapisLumieux.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("L'objet tapisLumieux est manquant.");
+        }
+
+        if (carpetLumieux != null)
+        {
+            carpetLumieux.SetActive(false); // Désactive initialement
+        }
+        else
+        {
+            Debug.LogError("L'objet carpetLumieux est manquant.");
+        }
+
+        if (bookUpDownAnimator == null)
+        {
+            Debug.LogError("L'Animator de BookUpDown n'est pas assigné.");
+        }
     }
 
     void Update()
@@ -77,13 +109,13 @@ public class Joueur : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Lanterne01")
+        if (other.CompareTag("Lanterne01"))
         {
             ampoule01.SetActive(true);
             ampoule02.SetActive(true);
         }
 
-        if (other.tag == "Lanterne02")
+        if (other.CompareTag("Lanterne02"))
         {
             ampoule03.SetActive(true);
             ampoule04.SetActive(true);
@@ -106,66 +138,133 @@ public class Joueur : MonoBehaviour
             roomlighting.SetActive(true);
         }
 
-        if (other.tag == "Tapis")
+        if (other.CompareTag("Tapis"))
         {
-            if (tapisAudioSource != null) 
+            // Activer le son du tapis
+            if (tapisAudioSource != null)
             {
                 tapisAudioSource.Play();
             }
-        }
-        
-        if (other.tag == "Table")
-        {
-            if (livreAudioSource != null) 
+
+            // Activer l'objet Tapis-lumieux
+            if (tapisLumieux != null)
             {
-                livreAudioSource.Play();
+                tapisLumieux.SetActive(true);
+            }
+
+        }
+
+        if (other.CompareTag("Carpet-lumineux"))
+        {
+            // Activer l'objet Carpet-lumineux lorsque le joueur entre dans la zone
+            if (carpetLumieux != null)
+            {
+                carpetLumieux.SetActive(true);
             }
         }
 
-                if (other.tag == "Board")
+        if (other.CompareTag("Table"))
         {
-            if (craieAudioSource != null) 
+            if (livreAudioSource != null)
+            {
+                livreAudioSource.Play();
+            }
+
+            // Activer l'animation BookUpDown
+            if (bookUpDownAnimator != null)
+            {
+                if (!bookUpDownAnimator.enabled)
+                {
+                    bookUpDownAnimator.enabled = true; // Réactiver l'Animator s'il est désactivé
+                }
+
+                // Lancer l'animation
+                bookUpDownAnimator.Play("bookupdown"); 
+                
+            }
+        }
+
+        if (other.CompareTag("Board"))
+        {
+            if (craieAudioSource != null)
             {
                 craieAudioSource.Play();
+            }
+        }
+
+        if (other.CompareTag("Lanterne01"))
+        {
+            if (lanterneAudioSource != null)
+            {
+                lanterneAudioSource.Play();
             }
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Lanterne01")
+        if (other.CompareTag("Lanterne01"))
         {
             ampoule01.SetActive(false);
             ampoule02.SetActive(false);
         }
 
-        if (other.tag == "Lanterne02")
+        if (other.CompareTag("Lanterne02"))
         {
             ampoule03.SetActive(false);
             ampoule04.SetActive(false);
         }
 
-        if (other.tag == "Tapis")
+        if (other.CompareTag("Tapis"))
         {
-            if (tapisAudioSource != null) 
+            if (tapisAudioSource != null)
             {
                 tapisAudioSource.Stop();
             }
-        }
 
-        if (other.tag == "Table")
-        {
-            if (livreAudioSource != null) 
+            // Désactiver l'objet Tapis-lumieux lorsque le joueur quitte la zone
+            if (tapisLumieux != null)
             {
-                livreAudioSource.Stop();
+                tapisLumieux.SetActive(false);
             }
         }
 
-                if (other.tag == "Board")
+        if (other.CompareTag("Tapis-lumineux"))
         {
-            if (craieAudioSource != null) 
+            // Désactiver l'objet Carpet-lumineux lorsque le joueur quitte la zone
+            if (carpetLumieux != null)
+            {
+                carpetLumieux.SetActive(false);
+            }
+        }
+
+        if (other.CompareTag("Table"))
+        {
+            if (livreAudioSource != null)
+            {
+                livreAudioSource.Stop();
+            }
+
+            
+            if (bookUpDownAnimator != null)
+            {
+                 bookUpDownAnimator.enabled = false;
+            }
+        }
+
+        if (other.CompareTag("Board"))
+        {
+            if (craieAudioSource != null)
             {
                 craieAudioSource.Stop();
+            }
+        }
+
+        if (other.CompareTag("Lanterne01"))
+        {
+            if (lanterneAudioSource != null)
+            {
+                lanterneAudioSource.Stop();
             }
         }
     }
