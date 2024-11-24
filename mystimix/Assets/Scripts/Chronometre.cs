@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Chronometre : MonoBehaviour
 {
-    public Text timerText; // Assign a UI Text element to display the time
     private float elapsedTime = 0f; // Tracks the elapsed time
     private bool isRunning = true; // Indicates if the chronometer is active
 
@@ -32,6 +31,5 @@ public class Chronometre : MonoBehaviour
         int seconds = Mathf.FloorToInt(elapsedTime % 60f);
         int milliseconds = Mathf.FloorToInt((elapsedTime * 1000) % 1000);
 
-        timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
     }
 }
