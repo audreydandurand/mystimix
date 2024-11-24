@@ -9091,6 +9091,10 @@ MonoBehaviour:
   lampcustom1em_etage03: {fileID: 1939263143}
   lampcustom1em_etage04: {fileID: 306022366}
   roomlighting: {fileID: 307812975}
+  tapisAudioSource: {fileID: 0}
+  livreAudioSource: {fileID: 0}
+  craieAudioSource: {fileID: 0}
+  marcherAudioObject: {fileID: 0}
 --- !u!1001 &1327893648
 PrefabInstance:
   m_ObjectHideFlags: 0
