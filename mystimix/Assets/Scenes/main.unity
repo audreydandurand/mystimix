@@ -2032,7 +2032,7 @@ GameObject:
   - component: {fileID: 198797209}
   - component: {fileID: 198797208}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Lampcustom 1em_etage 03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4657,7 +4657,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 10a822992c1b5e1498b8b8767bc2b9da, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6644,7 +6644,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bf77ad5a68692b145884b5eb1209dc85,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bf77ad5a68692b145884b5eb1209dc85,
         type: 3}
@@ -8114,7 +8114,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 57d45b1030e2c524d92ae5f69f561639, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -9719,7 +9719,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1cbb0519f71ab6a40b502135ff9b89eb, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10882,7 +10882,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f3fb05eb608d6514eb97b2833ddc8b64, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -16623,7 +16623,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5444f0e4772f3624f9774e76b69fe2a2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -20600,7 +20600,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4021122f3d71b524d825217092d45962, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -23837,7 +23837,7 @@ GameObject:
   - component: {fileID: 1829772506}
   - component: {fileID: 1829772505}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Lampcustom 1em_etage 04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27718,7 +27718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 2116779183}
-  m_MoveSpeed: 1
+  m_MoveSpeed: 3
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1
@@ -27738,7 +27738,7 @@ MonoBehaviour:
     m_Reference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_RightHandMoveAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Right Hand Move
       m_Type: 0
@@ -27762,27 +27762,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa55e108dc85448499ed5e376669131e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ampoule01: {fileID: 0}
-  ampoule02: {fileID: 0}
-  ampoule03: {fileID: 0}
-  ampoule04: {fileID: 0}
-  chandelier01: {fileID: 0}
-  chandelier02: {fileID: 0}
-  chandelier03: {fileID: 0}
-  chandelier04: {fileID: 0}
-  lanternedeuxieme01: {fileID: 0}
-  lanternedeuxieme02: {fileID: 0}
-  lanternedeuxieme03: {fileID: 0}
-  lanternedeuxieme04: {fileID: 0}
-  lampcustom3em_etage01: {fileID: 0}
-  lampcustom3em_etage02: {fileID: 0}
-  lampcustom2em_etage01: {fileID: 0}
-  lampcustom2em_etage02: {fileID: 0}
-  lampcustom1em_etage01: {fileID: 0}
-  lampcustom1em_etage02: {fileID: 0}
-  lampcustom1em_etage03: {fileID: 0}
-  lampcustom1em_etage04: {fileID: 0}
-  roomlighting: {fileID: 0}
+  ampoule01: {fileID: 1908469051}
+  ampoule02: {fileID: 828754262}
+  ampoule03: {fileID: 1560213709}
+  ampoule04: {fileID: 177074427}
+  chandelier01: {fileID: 1165166916}
+  chandelier02: {fileID: 1793259141}
+  chandelier03: {fileID: 1176437132}
+  chandelier04: {fileID: 1792204906}
+  lanternedeuxieme01: {fileID: 61838384}
+  lanternedeuxieme02: {fileID: 1836650804}
+  lanternedeuxieme03: {fileID: 510743782}
+  lanternedeuxieme04: {fileID: 181507192}
+  lampcustom3em_etage01: {fileID: 1762124891}
+  lampcustom3em_etage02: {fileID: 1586232261}
+  lampcustom2em_etage01: {fileID: 947532923}
+  lampcustom2em_etage02: {fileID: 779322286}
+  lampcustom1em_etage01: {fileID: 641571381}
+  lampcustom1em_etage02: {fileID: 2069464371}
+  lampcustom1em_etage03: {fileID: 1829772504}
+  lampcustom1em_etage04: {fileID: 198797206}
+  roomlighting: {fileID: 264068698}
   tapisAudioSource: {fileID: 1291290697}
   livreAudioSource: {fileID: 693405834}
   craieAudioSource: {fileID: 458991196}
@@ -27844,7 +27844,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2ff5fd442d2f3504cb9e27dd6766f889, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
