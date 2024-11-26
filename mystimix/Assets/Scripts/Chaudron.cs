@@ -116,7 +116,7 @@ public class CauldronManager : MonoBehaviour
 
     private void EndGame()
     {
-        Debug.Log("Game Over! All sets completed!");
+        Debug.Log("Fin des recettes!");
         // Trigger any end-game logic here (e.g., load a new scene, show a UI screen, etc.)
     }
 }
