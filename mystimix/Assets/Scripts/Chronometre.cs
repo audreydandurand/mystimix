@@ -27,18 +27,18 @@ public class Chronometre : MonoBehaviour
     private void UpdateTimerDisplay()
     {
         int minutes = Mathf.FloorToInt(elapsedTime / 60f);
-        int seconds = Mathf.FloorToInt(elapsedTime % 60f);
-        int milliseconds = Mathf.FloorToInt((elapsedTime * 1000) % 1000);
+        int secondes = Mathf.FloorToInt(elapsedTime % 60f);
+        int millisecondes = Mathf.FloorToInt((elapsedTime * 1000) % 1000);
 
-        timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, secondes, millisecondes);
     }
 
     public string GetFormattedFinalTime()
     {
         int minutes = Mathf.FloorToInt(finalTime / 60f);
-        int seconds = Mathf.FloorToInt(finalTime % 60f);
-        int milliseconds = Mathf.FloorToInt((finalTime * 1000) % 1000);
+        int secondes = Mathf.FloorToInt(finalTime % 60f);
+        int millisecondes = Mathf.FloorToInt((finalTime * 1000) % 1000);
 
-        return string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        return string.Format("{0:00}:{1:00}:{2:000}", minutes, secondes, millisecondes);
     }
 }
