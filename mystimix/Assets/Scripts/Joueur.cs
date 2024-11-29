@@ -268,4 +268,9 @@ public class Joueur : MonoBehaviour
             }
         }
     }
+
+    public void quitterPartie()
+    {
+        Application.Quit();
+    }
 }
