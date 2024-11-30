@@ -201,10 +201,11 @@ public class Joueur : MonoBehaviour
             }
         }
 
-        if (other.Tag == "canva-debut")
+        if (other.CompareTag("canva-debut"))
         {
             canvaDebut.SetActive(true);
         }
+
     }
 
     public void OnTriggerExit(Collider other)
@@ -274,7 +275,7 @@ public class Joueur : MonoBehaviour
             }
         }
 
-        if (other.Tag == "canva-debut")
+        if (other.CompareTag("canva-debut"))
         {
             canvaDebut.SetActive(false);
         }
