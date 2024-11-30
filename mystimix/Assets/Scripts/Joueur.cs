@@ -200,6 +200,11 @@ public class Joueur : MonoBehaviour
                 lanterneAudioSource.Play();
             }
         }
+
+        if (other.Tag == "canva-debut")
+        {
+            canvaDebut.SetActive(true);
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -267,6 +272,11 @@ public class Joueur : MonoBehaviour
             {
                 lanterneAudioSource.Stop();
             }
+        }
+
+        if (other.Tag == "canva-debut")
+        {
+            canvaDebut.SetActive(false);
         }
     }
 

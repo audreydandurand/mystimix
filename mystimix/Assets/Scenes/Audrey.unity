@@ -1365,6 +1365,7 @@ MonoBehaviour:
   craieAudioSource: {fileID: 0}
   lanterneAudioSource: {fileID: 0}
   bookUpDownAnimator: {fileID: 0}
+  canvaDebut: {fileID: 0}
   marcherAudioObject: {fileID: 0}
   tapisLumieux: {fileID: 0}
   carpetLumieux: {fileID: 0}
@@ -17195,7 +17196,7 @@ GameObject:
   - component: {fileID: 1448636080}
   m_Layer: 0
   m_Name: canva_debut
-  m_TagString: Lanterne01
+  m_TagString: canva-debut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
