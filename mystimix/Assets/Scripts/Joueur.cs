@@ -30,7 +30,6 @@ public class Joueur : MonoBehaviour
     public AudioSource craieAudioSource;
     public AudioSource lanterneAudioSource;
     public Animator bookUpDownAnimator;
-    public GameObject canvaDebut;
 
     // Son de marche
     public GameObject marcherAudioObject; // Empty object avec le tag "marcher"
@@ -200,12 +199,6 @@ public class Joueur : MonoBehaviour
                 lanterneAudioSource.Play();
             }
         }
-
-        if (other.CompareTag("canva-debut"))
-        {
-            canvaDebut.SetActive(true);
-        }
-
     }
 
     public void OnTriggerExit(Collider other)
@@ -273,11 +266,6 @@ public class Joueur : MonoBehaviour
             {
                 lanterneAudioSource.Stop();
             }
-        }
-
-        if (other.CompareTag("canva-debut"))
-        {
-            canvaDebut.SetActive(false);
         }
     }
 
