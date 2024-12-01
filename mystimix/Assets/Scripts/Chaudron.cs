@@ -1,123 +1,238 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
-public class CauldronManager : MonoBehaviour
+public class Chaudron : MonoBehaviour
 {
-    [Header("Cauldron Settings")]
-    public int requiredIngredients = 3; // Number of ingredients per set
-    public Animator cauldronAnimator; // Animator for success animation
-    public Transform ingredientEjectPoint; // Point to eject wrong ingredients
+    [Header("Ingredient Settings")]
+    public int totalIngredients = 9; // Total number of ingredients available
+    public Transform hiddenStorage;  // A hidden area to store "eaten" ingredients
 
-    private List<int> currentIngredients = new List<int>(); // IDs of ingredients currently in the cauldron
-    private List<int> correctIngredients = new List<int>(); // Current correct ingredient set
-    private List<List<int>> allIngredientSets = new List<List<int>>(); // All sets of random ingredients
-    private int currentSetIndex = 0; // Tracks the current set
-    private System.Random random = new System.Random(); // Random number generator
+    private List<int> unusedIngredients; // Tracks ingredients that are still available
+    private List<int> currentRecipe; // The active recipe
+    private List<int> currentIngredients; // Ingredients currently in the cauldron
+
+    private Dictionary<int, GameObject> ingredientObjects; // Tracks ingredient IDs and their corresponding GameObjects
+    private Dictionary<int, Vector3> originalPositions; // Tracks original positions of ingredients
+    private HashSet<int> ingredientsInHiddenStorage; // Keeps track of ingredients that have been moved to hidden storage
 
     private void Start()
     {
-        GenerateAllIngredientSets();
-        Debug.Log("Game Started! Solve all sets.");
-        LoadNextSet();
+        // Initialize the unused ingredient pool with all ingredient IDs
+        unusedIngredients = new List<int>();
+        ingredientObjects = new Dictionary<int, GameObject>();
+        ingredientsInHiddenStorage = new HashSet<int>(); // Keeps track of ingredients in hidden storage
+        originalPositions = new Dictionary<int, Vector3>(); // Keeps track of original ingredient positions
+
+        Ingredient[] allIngredients = FindObjectsOfType<Ingredient>();
+        foreach (var ingredient in allIngredients)
+        {
+            unusedIngredients.Add(ingredient.id);
+            ingredientObjects[ingredient.id] = ingredient.gameObject;
+            originalPositions[ingredient.id] = ingredient.transform.position; // Save original position
+        }
+
+        currentIngredients = new List<int>();
+        GenerateNewRecipe();
     }
 
-    private void GenerateAllIngredientSets()
+    private void GenerateNewRecipe()
     {
-        for (int i = 0; i < 3; i++) // Generate 3 random sets
+        if (unusedIngredients.Count < 3)
         {
-            var newSet = Enumerable.Range(1, 9)
-                                   .OrderBy(_ => random.Next())
-                                   .Take(requiredIngredients)
-                                   .ToList();
-            allIngredientSets.Add(newSet);
-        }
-
-        for (int i = 0; i < allIngredientSets.Count; i++)
-        {
-            Debug.Log($"Set {i + 1}: {string.Join(", ", allIngredientSets[i])}");
-        }
-    }
-
-    private void LoadNextSet()
-    {
-        if (currentSetIndex < allIngredientSets.Count)
-        {
-            correctIngredients = allIngredientSets[currentSetIndex];
-            Debug.Log($"Current Set {currentSetIndex + 1}: {string.Join(", ", correctIngredients)}");
-        }
-        else
-        {
+            Debug.Log("Not enough ingredients left for a new recipe. Game over!");
             EndGame();
+            return;
         }
+
+        currentRecipe = new List<int>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = Random.Range(0, unusedIngredients.Count);
+            currentRecipe.Add(unusedIngredients[randomIndex]);
+            unusedIngredients.RemoveAt(randomIndex); // Remove the selected ingredient
+        }
+
+        Debug.Log("New recipe generated: " + string.Join(", ", currentRecipe));
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the object has an Ingredient component
         Ingredient ingredient = other.GetComponent<Ingredient>();
-        if (ingredient != null)
+        if (ingredient != null && !currentIngredients.Contains(ingredient.id) && !ingredientsInHiddenStorage.Contains(ingredient.id))
         {
+            Debug.Log($"Ingredient {ingredient.id} entered the cauldron.");
             AddIngredient(ingredient);
         }
     }
 
-    private void AddIngredient(Ingredient ingredient)
+    public void AddIngredient(Ingredient ingredient)
     {
-        // Add ingredient if it's not already in the cauldron
-        if (currentIngredients.Count < requiredIngredients && !currentIngredients.Contains(ingredient.id))
+        if (currentIngredients.Contains(ingredient.id))
         {
-            currentIngredients.Add(ingredient.id);
-            Destroy(ingredient.gameObject); // Consume the ingredient visually
+            Debug.Log($"Ingredient {ingredient.id} is already in the cauldron.");
+            return;
         }
 
-        if (currentIngredients.Count == requiredIngredients)
+        currentIngredients.Add(ingredient.id);
+        Debug.Log($"Ingredient {ingredient.id} added to the cauldron.");
+
+        // Move the ingredient to hidden storage
+        MoveIngredientToHiddenStorage(ingredient);
+
+        if (currentIngredients.Count == 3)
         {
             CheckIngredients();
         }
     }
 
+    private void MoveIngredientToHiddenStorage(Ingredient ingredient)
+    {
+        if (hiddenStorage == null)
+        {
+            Debug.LogError("Hidden storage Transform is not assigned! Please assign it in the Inspector.");
+            return;
+        }
+
+        // Move the ingredient to the hidden storage area
+        ingredient.transform.position = hiddenStorage.position;
+
+        // Add the ingredient ID to the set of ingredients in hidden storage
+        ingredientsInHiddenStorage.Add(ingredient.id);
+
+        // Disable the ingredient's renderer to make it invisible
+        Renderer renderer = ingredient.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = false;  // Hide the ingredient visually
+        }
+
+        // Disable the ingredient's collider to prevent interaction with it
+        Collider collider = ingredient.GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false;  // Disable interaction
+        }
+
+        // Optionally disable the ingredient's interaction (e.g., XR interaction)
+        var grabInteractable = ingredient.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
+        if (grabInteractable != null)
+        {
+            grabInteractable.enabled = false;
+        }
+
+        Debug.Log($"Ingredient {ingredient.id} moved to hidden storage.");
+    }
+
     private void CheckIngredients()
     {
-        // Check if the ingredients match the current set
+        // Sort the lists to ensure order doesn't matter
         currentIngredients.Sort();
-        correctIngredients.Sort();
+        currentRecipe.Sort();
 
-        if (currentIngredients.SequenceEqual(correctIngredients))
+        if (currentIngredients.SequenceEqual(currentRecipe))
         {
-            Debug.Log($"Set {currentSetIndex + 1} Completed!");
-            cauldronAnimator.SetTrigger("Success");
-
-            currentSetIndex++; // Move to the next set
-            LoadNextSet();
+            Debug.Log("Correct ingredients! Moving to the next recipe.");
+            currentIngredients.Clear(); // Clear the cauldron
+            PlaySuccessAnimation();
+            DisableConsumedIngredients(); // Disable consumed ingredients
+            GenerateNewRecipe(); // Generate a new recipe
         }
         else
         {
-            Debug.Log("Incorrect Ingredients! Try again.");
-            EjectIngredients();
+            Debug.Log("Incorrect ingredients. Resetting the cauldron.");
+            ResetIngredients(); // Reset the incorrect ingredients
         }
-
-        // Clear the cauldron for the next attempt
-        currentIngredients.Clear();
     }
 
-    private void EjectIngredients()
+    private void DisableConsumedIngredients()
     {
+        // Disable ingredients that are part of the correct recipe
+        foreach (var ingredientID in currentRecipe)
+        {
+            if (ingredientObjects.TryGetValue(ingredientID, out var ingredientObject))
+            {
+                // Disable XR interactivity so they can't be used again
+                var grabInteractable = ingredientObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
+                if (grabInteractable != null)
+                {
+                    grabInteractable.enabled = false;
+                }
+
+                // Disable the ingredient's renderer to make it invisible
+                Renderer renderer = ingredientObject.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = false;
+                }
+
+                // Disable the ingredient's collider to prevent interaction with it
+                Collider collider = ingredientObject.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = false;
+                }
+
+                Debug.Log($"Ingredient {ingredientID} has been disabled after being consumed.");
+            }
+        }
+    }
+
+    private void ResetIngredients()
+    {
+        // Reset ingredients that are in the cauldron but not in hidden storage
         foreach (var ingredientID in currentIngredients)
         {
-            // Create a placeholder object to represent ejected ingredient (optional)
-            GameObject dummyIngredient = new GameObject($"EjectedIngredient_{ingredientID}");
-            Rigidbody rb = dummyIngredient.AddComponent<Rigidbody>();
-            dummyIngredient.transform.position = ingredientEjectPoint.position;
-            rb.AddForce(Random.insideUnitSphere * 2f, ForceMode.Impulse); // Random direction
-            Destroy(dummyIngredient, 2f); // Clean up dummy objects
+            if (ingredientObjects.TryGetValue(ingredientID, out var ingredientObject) && ingredientsInHiddenStorage.Contains(ingredientID))
+            {
+                // Reset the ingredient to its original position
+                ingredientObject.transform.position = originalPositions[ingredientID];
+
+                // Re-enable interaction for the ingredient
+                var grabInteractable = ingredientObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
+                if (grabInteractable != null)
+                {
+                    grabInteractable.enabled = true;
+                }
+
+                // Make the ingredient visible again
+                Renderer renderer = ingredientObject.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = true;  // Make the ingredient visible again
+                }
+
+                // Re-enable the ingredient's collider for interaction
+                Collider collider = ingredientObject.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = true;  // Re-enable interaction
+                }
+
+                Debug.Log($"Ingredient {ingredientID} has been reset.");
+            }
         }
+
+        currentIngredients.Clear(); // Clear the cauldron
+        ingredientsInHiddenStorage.Clear(); // Clear the hidden storage tracking
+    }
+
+    private Vector3 GetRandomResetPosition()
+    {
+        // Customize this method to define where the reset ingredients should go
+        return new Vector3(Random.Range(-5, 5), 1, Random.Range(-5, 5));
+    }
+
+    private void PlaySuccessAnimation()
+    {
+        Debug.Log("Success animation plays!");
+        // Add animation logic here
     }
 
     private void EndGame()
     {
-        Debug.Log("Fin des recettes!");
-        // Trigger any end-game logic here (e.g., load a new scene, show a UI screen, etc.)
+        Debug.Log("Congratulations! You've completed all the recipes!");
+        // Add end-game animation or logic here
     }
 }
-
