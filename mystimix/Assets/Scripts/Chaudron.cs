@@ -1,31 +1,35 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 public class Chaudron : MonoBehaviour
 {
     [Header("Ingredient Settings")]
     public int totalIngredients = 9; // Total number of ingredients available
     public Transform hiddenStorage;  // A hidden area to store "eaten" ingredients
-    public List<GameObject> ingredientCanvasGameObjects;  // List to hold ingredient GameObjects in the canvas
 
-    private List<int> unusedIngredients; // Tracks ingredients that are still available
+    public List<int> set1Ingredients = new List<int> { 1, 2, 3 };  // Ingredients for set 1
+    public List<int> set2Ingredients = new List<int> { 4, 5, 6 };  // Ingredients for set 2
+    public List<int> set3Ingredients = new List<int> { 7, 8, 9 };  // Ingredients for set 3
+
     private List<int> currentRecipe; // The active recipe
     private List<int> currentIngredients; // Ingredients currently in the cauldron
 
     private Dictionary<int, GameObject> ingredientObjects; // Tracks ingredient IDs and their corresponding GameObjects
+    private Dictionary<int, Vector3> originalPositions; // Tracks original positions of ingredients
+    private HashSet<int> ingredientsInHiddenStorage; // Keeps track of ingredients that have been moved to hidden storage
 
     private void Start()
     {
-        // Initialize the unused ingredient pool with all ingredient IDs
-        unusedIngredients = new List<int>();
         ingredientObjects = new Dictionary<int, GameObject>();
+        ingredientsInHiddenStorage = new HashSet<int>(); // Keeps track of ingredients in hidden storage
+        originalPositions = new Dictionary<int, Vector3>(); // Keeps track of original ingredient positions
 
         Ingredient[] allIngredients = FindObjectsOfType<Ingredient>();
         foreach (var ingredient in allIngredients)
         {
-            unusedIngredients.Add(ingredient.id);
             ingredientObjects[ingredient.id] = ingredient.gameObject;
+            originalPositions[ingredient.id] = ingredient.transform.position; // Save original position
         }
 
         currentIngredients = new List<int>();
@@ -34,7 +38,7 @@ public class Chaudron : MonoBehaviour
 
     private void GenerateNewRecipe()
     {
-        if (unusedIngredients.Count < 3)
+        if (set1Ingredients.Count == 0 || set2Ingredients.Count == 0 || set3Ingredients.Count == 0)
         {
             Debug.Log("Not enough ingredients left for a new recipe. Game over!");
             EndGame();
@@ -43,21 +47,32 @@ public class Chaudron : MonoBehaviour
 
         currentRecipe = new List<int>();
 
-        for (int i = 0; i < 3; i++)
-        {
-            int randomIndex = Random.Range(0, unusedIngredients.Count);
-            currentRecipe.Add(unusedIngredients[randomIndex]);
-            unusedIngredients.RemoveAt(randomIndex); // Remove the selected ingredient
-        }
+        // Randomly select one ingredient from each set
+        currentRecipe.Add(SelectIngredientFromSet(set1Ingredients));
+        currentRecipe.Add(SelectIngredientFromSet(set2Ingredients));
+        currentRecipe.Add(SelectIngredientFromSet(set3Ingredients));
 
         Debug.Log("New recipe generated: " + string.Join(", ", currentRecipe));
-        DisplayCurrentRecipe(); // Show the current recipe on the canvas
+    }
+
+    private int SelectIngredientFromSet(List<int> ingredientSet)
+    {
+        if (ingredientSet.Count == 0)
+        {
+            Debug.LogWarning("Set is empty, no ingredients available!");
+            return -1;
+        }
+
+        int randomIndex = Random.Range(0, ingredientSet.Count);
+        int selectedIngredient = ingredientSet[randomIndex];
+        ingredientSet.RemoveAt(randomIndex); // Remove the ingredient from the set to ensure uniqueness
+        return selectedIngredient;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Ingredient ingredient = other.GetComponent<Ingredient>();
-        if (ingredient != null && !currentIngredients.Contains(ingredient.id))
+        if (ingredient != null && !currentIngredients.Contains(ingredient.id) && !ingredientsInHiddenStorage.Contains(ingredient.id))
         {
             Debug.Log($"Ingredient {ingredient.id} entered the cauldron.");
             AddIngredient(ingredient);
@@ -75,8 +90,8 @@ public class Chaudron : MonoBehaviour
         currentIngredients.Add(ingredient.id);
         Debug.Log($"Ingredient {ingredient.id} added to the cauldron.");
 
-        // Simulate the cauldron "eating" the ingredient
-        ConsumeIngredient(ingredient);
+        // Move the ingredient to hidden storage
+        MoveIngredientToHiddenStorage(ingredient);
 
         if (currentIngredients.Count == 3)
         {
@@ -84,7 +99,7 @@ public class Chaudron : MonoBehaviour
         }
     }
 
-    private void ConsumeIngredient(Ingredient ingredient)
+    private void MoveIngredientToHiddenStorage(Ingredient ingredient)
     {
         if (hiddenStorage == null)
         {
@@ -95,14 +110,31 @@ public class Chaudron : MonoBehaviour
         // Move the ingredient to the hidden storage area
         ingredient.transform.position = hiddenStorage.position;
 
-        // Disable XR interactivity while "consumed"
+        // Add the ingredient ID to the set of ingredients in hidden storage
+        ingredientsInHiddenStorage.Add(ingredient.id);
+
+        // Disable the ingredient's renderer to make it invisible
+        Renderer renderer = ingredient.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = false;  // Hide the ingredient visually
+        }
+
+        // Disable the ingredient's collider to prevent interaction with it
+        Collider collider = ingredient.GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false;  // Disable interaction
+        }
+
+        // Optionally disable the ingredient's interaction (e.g., XR interaction)
         var grabInteractable = ingredient.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
         if (grabInteractable != null)
         {
             grabInteractable.enabled = false;
         }
 
-        Debug.Log($"Ingredient {ingredient.id} has been consumed by the cauldron.");
+        Debug.Log($"Ingredient {ingredient.id} moved to hidden storage.");
     }
 
     private void CheckIngredients()
@@ -116,29 +148,78 @@ public class Chaudron : MonoBehaviour
             Debug.Log("Correct ingredients! Moving to the next recipe.");
             currentIngredients.Clear(); // Clear the cauldron
             PlaySuccessAnimation();
+            DisableConsumedIngredients(); // Disable consumed ingredients
             GenerateNewRecipe(); // Generate a new recipe
         }
         else
         {
             Debug.Log("Incorrect ingredients. Resetting the cauldron.");
-            ResetIngredients();
+            ResetIngredients(); // Reset the incorrect ingredients
+        }
+    }
+
+    private void DisableConsumedIngredients()
+    {
+        // Disable ingredients that are part of the correct recipe
+        foreach (var ingredientID in currentRecipe)
+        {
+            if (ingredientObjects.TryGetValue(ingredientID, out var ingredientObject))
+            {
+                // Disable XR interactivity so they can't be used again
+                var grabInteractable = ingredientObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
+                if (grabInteractable != null)
+                {
+                    grabInteractable.enabled = false;
+                }
+
+                // Disable the ingredient's renderer to make it invisible
+                Renderer renderer = ingredientObject.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = false;
+                }
+
+                // Disable the ingredient's collider to prevent interaction with it
+                Collider collider = ingredientObject.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = false;
+                }
+
+                Debug.Log($"Ingredient {ingredientID} has been disabled after being consumed.");
+            }
         }
     }
 
     private void ResetIngredients()
     {
+        // Reset ingredients that are in the cauldron but not in hidden storage
         foreach (var ingredientID in currentIngredients)
         {
-            if (ingredientObjects.TryGetValue(ingredientID, out var ingredientObject))
+            if (ingredientObjects.TryGetValue(ingredientID, out var ingredientObject) && ingredientsInHiddenStorage.Contains(ingredientID))
             {
-                // Return the ingredient to its original location or make it available again
-                ingredientObject.transform.position = GetRandomResetPosition();
+                // Reset the ingredient to its original position
+                ingredientObject.transform.position = originalPositions[ingredientID];
 
-                // Re-enable interactivity for reuse
+                // Re-enable interaction for the ingredient
                 var grabInteractable = ingredientObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
                 if (grabInteractable != null)
                 {
                     grabInteractable.enabled = true;
+                }
+
+                // Make the ingredient visible again
+                Renderer renderer = ingredientObject.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.enabled = true;  // Make the ingredient visible again
+                }
+
+                // Re-enable the ingredient's collider for interaction
+                Collider collider = ingredientObject.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = true;  // Re-enable interaction
                 }
 
                 Debug.Log($"Ingredient {ingredientID} has been reset.");
@@ -146,37 +227,13 @@ public class Chaudron : MonoBehaviour
         }
 
         currentIngredients.Clear(); // Clear the cauldron
+        ingredientsInHiddenStorage.Clear(); // Clear the hidden storage tracking
     }
 
     private Vector3 GetRandomResetPosition()
     {
         // Customize this method to define where the reset ingredients should go
         return new Vector3(Random.Range(-5, 5), 1, Random.Range(-5, 5));
-    }
-
-    private void DisplayCurrentRecipe()
-    {
-        // Disable all ingredient GameObjects initially to clear previous selections
-        foreach (GameObject ingredientObject in ingredientCanvasGameObjects)
-        {
-            ingredientObject.SetActive(false);  // Disable the GameObject to hide the image
-        }
-
-        // Now enable only the GameObjects for the ingredients in the current recipe
-        foreach (int ingredientID in currentRecipe)
-        {
-            // Ensure that the ingredientID is within the range of available GameObjects
-            if (ingredientID >= 1 && ingredientID <= ingredientCanvasGameObjects.Count)
-            {
-                // Enable the corresponding GameObject for this ingredientID
-                ingredientCanvasGameObjects[ingredientID - 1].SetActive(true);  // Adjusting for 0-indexing
-                Debug.Log($"Displaying ingredient {ingredientID} in GameObject slot {ingredientID}");
-            }
-            else
-            {
-                Debug.LogWarning($"Ingredient ID {ingredientID} does not correspond to a GameObject slot.");
-            }
-        }
     }
 
     private void PlaySuccessAnimation()
