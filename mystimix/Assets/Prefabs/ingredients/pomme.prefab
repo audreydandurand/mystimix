@@ -1563,7 +1563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f45d18c1bce3e4b9bb81220439f2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 7
+  id: 2
+  originalPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &8012040082458799323
 Rigidbody:
   m_ObjectHideFlags: 0
