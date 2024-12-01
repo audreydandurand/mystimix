@@ -8,7 +8,10 @@ public class Chaudron : MonoBehaviour
     public int totalIngredients = 9; // Total number of ingredients available
     public Transform hiddenStorage;  // A hidden area to store "eaten" ingredients
 
-    private List<int> unusedIngredients; // Tracks ingredients that are still available
+    public List<int> set1Ingredients = new List<int> { 1, 2, 3 };  // Ingredients for set 1
+    public List<int> set2Ingredients = new List<int> { 4, 5, 6 };  // Ingredients for set 2
+    public List<int> set3Ingredients = new List<int> { 7, 8, 9 };  // Ingredients for set 3
+
     private List<int> currentRecipe; // The active recipe
     private List<int> currentIngredients; // Ingredients currently in the cauldron
 
@@ -18,8 +21,6 @@ public class Chaudron : MonoBehaviour
 
     private void Start()
     {
-        // Initialize the unused ingredient pool with all ingredient IDs
-        unusedIngredients = new List<int>();
         ingredientObjects = new Dictionary<int, GameObject>();
         ingredientsInHiddenStorage = new HashSet<int>(); // Keeps track of ingredients in hidden storage
         originalPositions = new Dictionary<int, Vector3>(); // Keeps track of original ingredient positions
@@ -27,7 +28,6 @@ public class Chaudron : MonoBehaviour
         Ingredient[] allIngredients = FindObjectsOfType<Ingredient>();
         foreach (var ingredient in allIngredients)
         {
-            unusedIngredients.Add(ingredient.id);
             ingredientObjects[ingredient.id] = ingredient.gameObject;
             originalPositions[ingredient.id] = ingredient.transform.position; // Save original position
         }
@@ -38,7 +38,7 @@ public class Chaudron : MonoBehaviour
 
     private void GenerateNewRecipe()
     {
-        if (unusedIngredients.Count < 3)
+        if (set1Ingredients.Count == 0 || set2Ingredients.Count == 0 || set3Ingredients.Count == 0)
         {
             Debug.Log("Not enough ingredients left for a new recipe. Game over!");
             EndGame();
@@ -47,14 +47,26 @@ public class Chaudron : MonoBehaviour
 
         currentRecipe = new List<int>();
 
-        for (int i = 0; i < 3; i++)
-        {
-            int randomIndex = Random.Range(0, unusedIngredients.Count);
-            currentRecipe.Add(unusedIngredients[randomIndex]);
-            unusedIngredients.RemoveAt(randomIndex); // Remove the selected ingredient
-        }
+        // Randomly select one ingredient from each set
+        currentRecipe.Add(SelectIngredientFromSet(set1Ingredients));
+        currentRecipe.Add(SelectIngredientFromSet(set2Ingredients));
+        currentRecipe.Add(SelectIngredientFromSet(set3Ingredients));
 
         Debug.Log("New recipe generated: " + string.Join(", ", currentRecipe));
+    }
+
+    private int SelectIngredientFromSet(List<int> ingredientSet)
+    {
+        if (ingredientSet.Count == 0)
+        {
+            Debug.LogWarning("Set is empty, no ingredients available!");
+            return -1;
+        }
+
+        int randomIndex = Random.Range(0, ingredientSet.Count);
+        int selectedIngredient = ingredientSet[randomIndex];
+        ingredientSet.RemoveAt(randomIndex); // Remove the ingredient from the set to ensure uniqueness
+        return selectedIngredient;
     }
 
     private void OnTriggerEnter(Collider other)
