@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; // For scene management
 
 public class Joueur : MonoBehaviour
 {
@@ -32,8 +32,8 @@ public class Joueur : MonoBehaviour
     public Animator bookUpDownAnimator;
 
     // Son de marche
-    public GameObject marcherAudioObject; // Empty object avec le tag "marcher"
-    private AudioSource marcheAudioSource; // AudioSource attachée à marcherAudioObject
+    public GameObject marcherAudioObject;
+    private AudioSource marcheAudioSource;
     private Vector3 dernierePosition;
     private bool estEnMouvement = false;
 
@@ -42,6 +42,10 @@ public class Joueur : MonoBehaviour
 
     // Référence à l'objet Carpet-lumineux
     public GameObject carpetLumieux;
+
+    // Référence à l'objet livre
+    public GameObject livre; // Référence à l'objet livre
+    private bool livreAnime = false;  // Variable pour suivre si l'animation est en cours
 
     void Start()
     {
@@ -79,6 +83,11 @@ public class Joueur : MonoBehaviour
         if (bookUpDownAnimator == null)
         {
             Debug.LogError("L'Animator de BookUpDown n'est pas assigné.");
+        }
+
+        if (livre == null)
+        {
+            Debug.LogError("L'objet livre n'est pas assigné.");
         }
     }
 
@@ -151,7 +160,6 @@ public class Joueur : MonoBehaviour
             {
                 tapisLumieux.SetActive(true);
             }
-
         }
 
         if (other.CompareTag("Carpet-lumineux"))
@@ -163,7 +171,7 @@ public class Joueur : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Table"))
+        if (other.CompareTag("Table") && !livreAnime)
         {
             if (livreAudioSource != null)
             {
@@ -180,8 +188,10 @@ public class Joueur : MonoBehaviour
 
                 // Lancer l'animation
                 bookUpDownAnimator.Play("bookupdown"); 
-                
             }
+
+            // Appeler la coroutine pour arrêter l'animation après 1.3 secondes
+            StartCoroutine(ArreterAnimationLivre());
         }
 
         if (other.CompareTag("Board"))
@@ -245,10 +255,9 @@ public class Joueur : MonoBehaviour
                 livreAudioSource.Stop();
             }
 
-            
             if (bookUpDownAnimator != null)
             {
-                 bookUpDownAnimator.enabled = false;
+                bookUpDownAnimator.enabled = false;
             }
         }
 
@@ -265,6 +274,31 @@ public class Joueur : MonoBehaviour
             if (lanterneAudioSource != null)
             {
                 lanterneAudioSource.Stop();
+            }
+        }
+    }
+
+    private IEnumerator ArreterAnimationLivre()
+    {
+        livreAnime = true;
+        yield return new WaitForSeconds(1.3f);  
+        
+        // Désactiver l'Animator pour arrêter l'animation après 1.3 secondes
+        if (bookUpDownAnimator != null)
+        {
+            bookUpDownAnimator.enabled = false;
+        }
+    }
+
+    // Fonction pour relancer l'animation du livre
+    public void RelancerAnimationLivre()
+    {
+        if (!livreAnime)
+        {
+            if (bookUpDownAnimator != null)
+            {
+                bookUpDownAnimator.enabled = true;
+                bookUpDownAnimator.Play("bookupdown"); // Relance l'animation
             }
         }
     }
