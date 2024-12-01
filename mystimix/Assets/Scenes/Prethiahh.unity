@@ -82254,7 +82254,7 @@ MonoBehaviour:
   marcherAudioObject: {fileID: 0}
   tapisLumieux: {fileID: 578882811}
   carpetLumieux: {fileID: 578882811}
-  livre: {fileID: 0}
+  livre: {fileID: 793167282}
 --- !u!114 &2116779189
 MonoBehaviour:
   m_ObjectHideFlags: 0
