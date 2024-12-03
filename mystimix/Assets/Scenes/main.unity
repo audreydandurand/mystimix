@@ -1134,6 +1134,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Device Simulator
       objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2384,7 +2389,7 @@ PrefabInstance:
     - target: {fileID: 663551908771965957, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.12
+      value: 1.78
       objectReference: {fileID: 0}
     - target: {fileID: 663551908771965957, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
@@ -2454,7 +2459,7 @@ PrefabInstance:
     - target: {fileID: 6581567124064272770, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.3
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 6848488209313064326, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
@@ -46297,7 +46302,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 2.7
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
