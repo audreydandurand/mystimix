@@ -51,7 +51,7 @@ public class Joueur : MonoBehaviour
     void Start()
     {
         // Récupère l'AudioSource depuis l'objet "marcher"
-        if (marcherAudioObject != null && marcherAudioObject.CompareTag("marcher"))
+        if (marcherAudioObject != null)
         {
             marcheAudioSource = marcherAudioObject.GetComponent<AudioSource>();
         }
@@ -67,29 +67,29 @@ public class Joueur : MonoBehaviour
         {
             tapisLumieux.SetActive(false);
         }
-        else
-        {
-            Debug.LogError("L'objet tapisLumieux est manquant.");
-        }
+        //else
+        //{
+        //    Debug.LogError("L'objet tapisLumieux est manquant.");
+        //}
 
         if (carpetLumieux != null)
         {
             carpetLumieux.SetActive(false); // Désactive initialement
         }
-        else
-        {
-            Debug.LogError("L'objet carpetLumieux est manquant.");
-        }
+        //else
+        //{
+        //    Debug.LogError("L'objet carpetLumieux est manquant.");
+        //}
 
-        if (bookUpDownAnimator == null)
-        {
-            Debug.LogError("L'Animator de BookUpDown n'est pas assigné.");
-        }
+        //if (bookUpDownAnimator == null)
+        //{
+        //    Debug.LogError("L'Animator de BookUpDown n'est pas assigné.");
+        //}
 
-        if (livre == null)
-        {
-            Debug.LogError("L'objet livre n'est pas assigné.");
-        }
+        //if (livre == null)
+        //{
+        //    Debug.LogError("L'objet livre n'est pas assigné.");
+        //}
     }
 
     void Update()
