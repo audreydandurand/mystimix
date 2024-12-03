@@ -15,6 +15,7 @@ TagManager:
   - Tapis-lumieux
   - Livre-vole
   - Livre-emission
+  - canva-debut
   layers:
   - Default
   - TransparentFX

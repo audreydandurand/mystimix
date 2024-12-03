@@ -25,6 +25,7 @@ public class Joueur : MonoBehaviour
     public GameObject lampcustom1em_etage03;
     public GameObject lampcustom1em_etage04;
     public GameObject roomlighting;
+    public GameObject canvaDebut;
     public AudioSource tapisAudioSource;
     public AudioSource livreAudioSource;
     public AudioSource craieAudioSource;
@@ -209,6 +210,11 @@ public class Joueur : MonoBehaviour
                 lanterneAudioSource.Play();
             }
         }
+
+        if (other.CompareTag("canva-debut"))
+        {
+            canvaDebut.SetActive(true);
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -275,6 +281,11 @@ public class Joueur : MonoBehaviour
             {
                 lanterneAudioSource.Stop();
             }
+        }
+
+        if (other.CompareTag("canva-debut"))
+        {
+            canvaDebut.SetActive(false);
         }
     }
 
