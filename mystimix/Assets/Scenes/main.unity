@@ -2508,6 +2508,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3689499221991266216, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 967179627}
+    - targetCorrespondingSourceObject: {fileID: 3689499221991266216, guid: 4fec0303b9e47ff428fd6006536b77e9,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 967179621}
     - targetCorrespondingSourceObject: {fileID: 3689499221991266216, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
@@ -8946,6 +8950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: marche_10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -20771,6 +20780,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: marche_08
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -46183,6 +46197,36 @@ CharacterController:
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &967179627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967179618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ae24ecfda10b145bcf09f1f5947e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Jump Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 9d99bfd9-d87b-4ba6-a190-0eff7fd21ec5
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 1348727541814964916, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  jumpHeight: 3
+  joueur: {fileID: 967179623}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &967287860
 GameObject:
   m_ObjectHideFlags: 0
@@ -46499,6 +46543,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: marche
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -47696,6 +47745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: marche_09
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -56143,6 +56197,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: marche_05
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
     - {fileID: -5754084199372789682, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -56716,6 +56775,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: marche_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -57960,7 +58024,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1299285625}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: colliders_escalier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68414,6 +68478,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: marche_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -95813,6 +95882,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: marche_07
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
     - {fileID: -5754084199372789682, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -96483,6 +96557,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: marche_04
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
     - {fileID: -5754084199372789682, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -97038,6 +97117,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: marche_06
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
