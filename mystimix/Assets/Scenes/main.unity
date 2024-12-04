@@ -1137,7 +1137,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4198,7 +4198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203617400}
   - component: {fileID: 203617401}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4263,7 +4263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 217302431}
   - component: {fileID: 217302432}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5032,7 +5032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 258456435}
   - component: {fileID: 258456436}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6676,7 +6676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343766215}
   - component: {fileID: 343766216}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8996,7 +8996,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -9524,8 +9524,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: GO!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 211c92eda1f49e540b7bc8a236b99d4e, type: 2}
+  m_sharedMaterial: {fileID: 2620780983476853924, guid: 211c92eda1f49e540b7bc8a236b99d4e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9549,15 +9550,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -9607,15 +9608,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492326439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.098436, y: 0.15164065, z: 0.098436}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 0.23974009, y: 0.36931962, z: 0.23974009}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 935475367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.8, y: 18}
+  m_AnchoredPosition: {x: 0.1, y: -0.1}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &499122097
@@ -20826,7 +20827,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -33678,7 +33679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651475065}
   - component: {fileID: 651475066}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34632,7 +34633,7 @@ GameObject:
   m_Component:
   - component: {fileID: 684741003}
   - component: {fileID: 684741004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36090,7 +36091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 760684078}
   - component: {fileID: 760684079}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: colonne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46724,7 +46725,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -47926,7 +47927,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -56510,7 +56511,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -57089,7 +57090,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -58212,7 +58213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1299285625}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: colliders_escalier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58370,7 +58371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1302460926}
   - component: {fileID: 1302460927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64488,7 +64489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1383308258}
   - component: {fileID: 1383308259}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65014,8 +65015,8 @@ Transform:
   m_GameObject: {fileID: 1386815520}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.94, y: 2.45, z: 16.123}
-  m_LocalScale: {x: 4.3116, y: 4.941794, z: 0.2809797}
+  m_LocalPosition: {x: -0.94, y: 2.45, z: 16.822}
+  m_LocalScale: {x: 4.3116, y: 4.941794, z: 1.4732598}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 225422699}
@@ -66510,7 +66511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1448149473}
   - component: {fileID: 1448149474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67253,7 +67254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1479874571}
   - component: {fileID: 1479874572}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rampe_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68670,7 +68671,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -71741,17 +71742,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654214414}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.43980667}
-  m_LocalScale: {x: 0.19214515, y: 0.12018911, z: 0.19214515}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -8.1}
+  m_LocalScale: {x: 0.09542178, y: 0.059341136, z: 0.11402086}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 935475367}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.64, y: 2.86}
+  m_AnchoredPosition: {x: -8.354, y: 2.59}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1659154484
@@ -72968,7 +72969,7 @@ GameObject:
   - component: {fileID: 1709079583}
   - component: {fileID: 1709079582}
   - component: {fileID: 1709079581}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80781,6 +80782,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Spiral_Stairs_01
       objectReference: {fileID: 0}
+    - target: {fileID: 152782, guid: 261ad4b8489ca984082e3df17e8c4f05, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 401186, guid: 261ad4b8489ca984082e3df17e8c4f05, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.1143
@@ -84216,7 +84221,7 @@ GameObject:
   - component: {fileID: 1963482469}
   - component: {fileID: 1963482468}
   - component: {fileID: 1963482467}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95941,7 +95946,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -96616,7 +96621,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
@@ -97183,7 +97188,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 4e8964f7c1722bb4dbf7b77e4cb79b43, type: 3}
