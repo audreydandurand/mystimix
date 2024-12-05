@@ -72310,7 +72310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dbb505a6773ef458789a6a059d4971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalIngredients: 9
   hiddenStorage: {fileID: 291381024}
   ingredientCanvasGameObjects:
   - {fileID: 887571067}
@@ -72322,6 +72321,7 @@ MonoBehaviour:
   - {fileID: 1015487913}
   - {fileID: 438702403}
   - {fileID: 1171281576}
+  recipeAnimators: []
 --- !u!1001 &1679665169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80784,7 +80784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 152782, guid: 261ad4b8489ca984082e3df17e8c4f05, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 401186, guid: 261ad4b8489ca984082e3df17e8c4f05, type: 3}
       propertyPath: m_LocalScale.y
