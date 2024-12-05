@@ -2517,10 +2517,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3689499221991266216, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 967179627}
-    - targetCorrespondingSourceObject: {fileID: 3689499221991266216, guid: 4fec0303b9e47ff428fd6006536b77e9,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 967179621}
     - targetCorrespondingSourceObject: {fileID: 3689499221991266216, guid: 4fec0303b9e47ff428fd6006536b77e9,
         type: 3}
@@ -2534,6 +2530,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 2
       addedObject: {fileID: 819111509}
+    - targetCorrespondingSourceObject: {fileID: 2351577199597173482, guid: 4fec0303b9e47ff428fd6006536b77e9,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 819111511}
   m_SourcePrefab: {fileID: 100100000, guid: 4fec0303b9e47ff428fd6006536b77e9, type: 3}
 --- !u!1 &95013393 stripped
 GameObject:
@@ -34335,7 +34335,7 @@ GameObject:
   - component: {fileID: 674413793}
   - component: {fileID: 674413792}
   - component: {fileID: 674413791}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: sol_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37138,6 +37138,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &819111511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819111505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ae24ecfda10b145bcf09f1f5947e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Jump Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 82fddc55-aecd-4bcb-a2cf-8a56205202f6
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 1348727541814964916, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  jumpHeight: 3
+  joueur: {fileID: 967179623}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &819369881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46375,36 +46405,6 @@ CharacterController:
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &967179627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967179618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ae24ecfda10b145bcf09f1f5947e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpButton:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Jump Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 9d99bfd9-d87b-4ba6-a190-0eff7fd21ec5
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 1348727541814964916, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  jumpHeight: 3
-  joueur: {fileID: 967179623}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 192
 --- !u!1 &967287860
 GameObject:
   m_ObjectHideFlags: 0
