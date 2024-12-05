@@ -5,36 +5,47 @@ using UnityEngine;
 public class Chaudron : MonoBehaviour
 {
     [Header("Ingredient Settings")]
-    public int totalIngredients = 9; // Total number of ingredients available
-    public Transform hiddenStorage;  // A hidden area to store "eaten" ingredients
-    public List<GameObject> ingredientCanvasGameObjects;  // List to hold ingredient GameObjects in the canvas
+    public Transform hiddenStorage;  // Hidden area to store "eaten" ingredients
+    public List<GameObject> ingredientCanvasGameObjects; // UI GameObjects for ingredients
+    public Animator[] recipeAnimators; // Animators for recipes 1, 2, and 3
 
-    private List<int> unusedIngredients; // Tracks ingredients that are still available
-    private List<int> currentRecipe; // The active recipe
-    private List<int> currentIngredients; // Ingredients currently in the cauldron
+    private List<int> unusedIngredients; // All unused ingredient IDs
+    private List<int> currentRecipe; // Current active recipe
+    private List<int> currentIngredients; // Ingredients in the cauldron
+    private List<List<int>> ingredientGroups; // Groups of ingredients
 
-    private Dictionary<int, GameObject> ingredientObjects; // Tracks ingredient IDs and their corresponding GameObjects
+    private Dictionary<int, GameObject> ingredientObjects; // Tracks ingredient IDs to GameObjects
 
     private void Start()
     {
-        // Initialize the unused ingredient pool with all ingredient IDs
+        InitializeIngredients();
+        GenerateNewRecipe();
+    }
+
+    private void InitializeIngredients()
+    {
         unusedIngredients = new List<int>();
         ingredientObjects = new Dictionary<int, GameObject>();
+        ingredientGroups = new List<List<int>> { new List<int>(), new List<int>(), new List<int>() };
 
         Ingredient[] allIngredients = FindObjectsOfType<Ingredient>();
         foreach (var ingredient in allIngredients)
         {
             unusedIngredients.Add(ingredient.id);
             ingredientObjects[ingredient.id] = ingredient.gameObject;
+
+            // Assign each ingredient to its group (e.g., 1-3 => group 0, 4-6 => group 1, etc.)
+            int groupIndex = (ingredient.id - 1) / 3;
+            if (groupIndex < ingredientGroups.Count)
+                ingredientGroups[groupIndex].Add(ingredient.id);
         }
 
         currentIngredients = new List<int>();
-        GenerateNewRecipe();
     }
 
     private void GenerateNewRecipe()
     {
-        if (unusedIngredients.Count < 3)
+        if (ingredientGroups.Any(group => group.Count == 0))
         {
             Debug.Log("Not enough ingredients left for a new recipe. Game over!");
             EndGame();
@@ -43,15 +54,17 @@ public class Chaudron : MonoBehaviour
 
         currentRecipe = new List<int>();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < ingredientGroups.Count; i++)
         {
-            int randomIndex = Random.Range(0, unusedIngredients.Count);
-            currentRecipe.Add(unusedIngredients[randomIndex]);
-            unusedIngredients.RemoveAt(randomIndex); // Remove the selected ingredient
+            int randomIndex = Random.Range(0, ingredientGroups[i].Count);
+            int selectedIngredient = ingredientGroups[i][randomIndex];
+
+            currentRecipe.Add(selectedIngredient);
+            ingredientGroups[i].Remove(selectedIngredient); // Remove from the group
         }
 
         Debug.Log("New recipe generated: " + string.Join(", ", currentRecipe));
-        DisplayCurrentRecipe(); // Show the current recipe on the canvas
+        DisplayCurrentRecipe();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -59,23 +72,13 @@ public class Chaudron : MonoBehaviour
         Ingredient ingredient = other.GetComponent<Ingredient>();
         if (ingredient != null && !currentIngredients.Contains(ingredient.id))
         {
-            Debug.Log($"Ingredient {ingredient.id} entered the cauldron.");
             AddIngredient(ingredient);
         }
     }
 
-    public void AddIngredient(Ingredient ingredient)
+    private void AddIngredient(Ingredient ingredient)
     {
-        if (currentIngredients.Contains(ingredient.id))
-        {
-            Debug.Log($"Ingredient {ingredient.id} is already in the cauldron.");
-            return;
-        }
-
         currentIngredients.Add(ingredient.id);
-        Debug.Log($"Ingredient {ingredient.id} added to the cauldron.");
-
-        // Simulate the cauldron "eating" the ingredient
         ConsumeIngredient(ingredient);
 
         if (currentIngredients.Count == 3)
@@ -88,35 +91,28 @@ public class Chaudron : MonoBehaviour
     {
         if (hiddenStorage == null)
         {
-            Debug.LogError("Hidden storage Transform is not assigned! Please assign it in the Inspector.");
+            Debug.LogError("Hidden storage Transform is not assigned!");
             return;
         }
 
-        // Move the ingredient to the hidden storage area
         ingredient.transform.position = hiddenStorage.position;
 
-        // Disable XR interactivity while "consumed"
         var grabInteractable = ingredient.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
         if (grabInteractable != null)
-        {
             grabInteractable.enabled = false;
-        }
-
-        Debug.Log($"Ingredient {ingredient.id} has been consumed by the cauldron.");
     }
 
     private void CheckIngredients()
     {
-        // Sort the lists to ensure order doesn't matter
         currentIngredients.Sort();
         currentRecipe.Sort();
 
         if (currentIngredients.SequenceEqual(currentRecipe))
         {
-            Debug.Log("Correct ingredients! Moving to the next recipe.");
-            currentIngredients.Clear(); // Clear the cauldron
+            Debug.Log("Correct ingredients! Recipe completed.");
             PlaySuccessAnimation();
-            GenerateNewRecipe(); // Generate a new recipe
+            currentIngredients.Clear();
+            GenerateNewRecipe();
         }
         else
         {
@@ -131,63 +127,51 @@ public class Chaudron : MonoBehaviour
         {
             if (ingredientObjects.TryGetValue(ingredientID, out var ingredientObject))
             {
-                // Return the ingredient to its original location or make it available again
                 ingredientObject.transform.position = GetRandomResetPosition();
 
-                // Re-enable interactivity for reuse
                 var grabInteractable = ingredientObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
                 if (grabInteractable != null)
-                {
                     grabInteractable.enabled = true;
-                }
-
-                Debug.Log($"Ingredient {ingredientID} has been reset.");
             }
         }
 
-        currentIngredients.Clear(); // Clear the cauldron
+        currentIngredients.Clear();
     }
 
     private Vector3 GetRandomResetPosition()
     {
-        // Customize this method to define where the reset ingredients should go
         return new Vector3(Random.Range(-5, 5), 1, Random.Range(-5, 5));
     }
 
     private void DisplayCurrentRecipe()
     {
-        // Disable all ingredient GameObjects initially to clear previous selections
         foreach (GameObject ingredientObject in ingredientCanvasGameObjects)
         {
-            ingredientObject.SetActive(false);  // Disable the GameObject to hide the image
+            ingredientObject.SetActive(false);
         }
 
-        // Now enable only the GameObjects for the ingredients in the current recipe
         foreach (int ingredientID in currentRecipe)
         {
-            // Ensure that the ingredientID is within the range of available GameObjects
             if (ingredientID >= 1 && ingredientID <= ingredientCanvasGameObjects.Count)
             {
-                // Enable the corresponding GameObject for this ingredientID
-                ingredientCanvasGameObjects[ingredientID - 1].SetActive(true);  // Adjusting for 0-indexing
-                Debug.Log($"Displaying ingredient {ingredientID} in GameObject slot {ingredientID}");
-            }
-            else
-            {
-                Debug.LogWarning($"Ingredient ID {ingredientID} does not correspond to a GameObject slot.");
+                ingredientCanvasGameObjects[ingredientID - 1].SetActive(true);
             }
         }
     }
 
     private void PlaySuccessAnimation()
     {
-        Debug.Log("Success animation plays!");
-        // Add animation logic here
+        int recipeIndex = unusedIngredients.Count / 3; // Determine which recipe was completed
+        if (recipeIndex >= 0 && recipeIndex < recipeAnimators.Length)
+        {
+            recipeAnimators[recipeIndex].SetTrigger("PlaySuccess");
+            Debug.Log($"Playing success animation for recipe {recipeIndex + 1}");
+        }
     }
 
     private void EndGame()
     {
-        Debug.Log("Congratulations! You've completed all the recipes!");
-        // Add end-game animation or logic here
+        Debug.Log("All recipes completed!");
     }
 }
+
