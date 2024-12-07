@@ -258,7 +258,7 @@ public class Joueur : MonoBehaviour
         {
             if (livreAudioSource != null)
             {
-                livreAudioSource.Stop();
+                livreAudioSource.Play();
             }
 
             if (bookUpDownAnimator != null)
