@@ -289,17 +289,27 @@ public class Joueur : MonoBehaviour
         }
     }
 
-    private IEnumerator ArreterAnimationLivre()
+private IEnumerator ArreterAnimationLivre()
+{
+    livreAnime = true;
+
+    // Attendre la durée de l'animation
+    yield return new WaitForSeconds(1.3f);  
+
+    // Désactiver l'Animator et supprimer le livre
+    if (bookUpDownAnimator != null)
     {
-        livreAnime = true;
-        yield return new WaitForSeconds(1.3f);  
-        
-        // Désactiver l'Animator pour arrêter l'animation après 1.3 secondes
-        if (bookUpDownAnimator != null)
-        {
-            bookUpDownAnimator.enabled = false;
-        }
+        bookUpDownAnimator.enabled = false;
     }
+
+    // Effacer le livre
+    if (livre != null)
+    {
+        Destroy(livre);  // Supprime l'objet du jeu
+    }
+
+    livreAnime = false;  // Animation terminée
+}
 
     // Fonction pour relancer l'animation du livre
     public void RelancerAnimationLivre()
