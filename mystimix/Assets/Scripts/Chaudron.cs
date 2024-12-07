@@ -191,30 +191,35 @@ public class Chaudron : MonoBehaviour
             }
         }
     }
+private bool hasPlayedRecipe1 = false;
+private bool hasPlayedRecipe2 = false;
+private bool hasPlayedRecipe3 = false;
 
 private void PlaySuccessAnimation()
 {
     string tagToFind = "";
-
-    if (currentRecipe.SequenceEqual(new List<int> { 1, 4, 7 }))
+    if (currentRecipe.SequenceEqual(new List<int> { 1, 4, 7 }) && !hasPlayedRecipe1)
     {
-        tagToFind = "MagicBuffPink";  
+        tagToFind = "MagicBuffPink";
+        hasPlayedRecipe1 = true; 
         Debug.Log("Playing Recipe 1 Success Animation (MagicBuffPink)");
     }
-    else if (currentRecipe.SequenceEqual(new List<int> { 2, 5, 8 }))
+    else if (currentRecipe.SequenceEqual(new List<int> { 2, 5, 8 }) && !hasPlayedRecipe2)
     {
-        tagToFind = "MagicBuffWhite";  
+        tagToFind = "MagicBuffWhite";
+        hasPlayedRecipe2 = true;
         Debug.Log("Playing Recipe 2 Success Animation (MagicBuffWhite)");
     }
-    else if (currentRecipe.SequenceEqual(new List<int> { 3, 6, 9 }))
+    else if (currentRecipe.SequenceEqual(new List<int> { 3, 6, 9 }) && !hasPlayedRecipe3)
     {
-        tagToFind = "MagicBuffPurple"; 
+        tagToFind = "MagicBuffPurple";
+        hasPlayedRecipe3 = true; 
         Debug.Log("Playing Recipe 3 Success Animation (MagicBuffPurple)");
     }
     else
     {
-        Debug.LogWarning("Unknown recipe, no animation played.");
-        return;  
+        Debug.LogWarning("Unknown recipe or already played, no animation played.");
+        return; 
     }
 
     GameObject particleObject = GameObject.FindWithTag(tagToFind);
@@ -223,7 +228,8 @@ private void PlaySuccessAnimation()
 
     if (particleObject != null)
     {
-        particleObject.SetActive(true); 
+        particleObject.SetActive(true);
+
         ParticleSystem ps = particleObject.GetComponent<ParticleSystem>();
         
         if (ps != null)
@@ -241,8 +247,6 @@ private void PlaySuccessAnimation()
         Debug.LogWarning($"No GameObject found with tag {tagToFind}");
     }
 }
-
-
 
     private void EndGame()
     {
