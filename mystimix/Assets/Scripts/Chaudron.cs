@@ -192,29 +192,51 @@ public class Chaudron : MonoBehaviour
         }
     }
 
-    private void PlaySuccessAnimation()
+private void PlaySuccessAnimation()
+{
+    string tagToFind = "";
+
+    // Determine which particle system tag to use
+    if (currentRecipe.SequenceEqual(new List<int> { 1, 4, 7 }))
     {
-        // Play animation based on recipe completion
-        if (currentRecipe.SequenceEqual(new List<int> { 1, 4, 7 }))
+        tagToFind = "MagicBuffPink";
+        Debug.Log("Playing Recipe 1 Success Animation");
+    }
+    else if (currentRecipe.SequenceEqual(new List<int> { 2, 5, 8 }))
+    {
+        tagToFind = "MagicBuffWhite";
+        Debug.Log("Playing Recipe 2 Success Animation");
+    }
+    else if (currentRecipe.SequenceEqual(new List<int> { 3, 6, 9 }))
+    {
+        tagToFind = "MagicBuffPurple";
+        Debug.Log("Playing Recipe 3 Success Animation");
+    }
+    else
+    {
+        Debug.LogWarning("Unknown recipe, no animation played.");
+    }
+
+    // Find and play the particle system by tag
+    GameObject particleObject = GameObject.FindWithTag(tagToFind);
+    if (particleObject != null)
+    {
+        ParticleSystem ps = particleObject.GetComponent<ParticleSystem>();
+        if (ps != null)
         {
-            // Recipe 1 animation
-            Debug.Log("Playing Recipe 1 Success Animation");
-        }
-        else if (currentRecipe.SequenceEqual(new List<int> { 2, 5, 8 }))
-        {
-            // Recipe 2 animation
-            Debug.Log("Playing Recipe 2 Success Animation");
-        }
-        else if (currentRecipe.SequenceEqual(new List<int> { 3, 6, 9 }))
-        {
-            // Recipe 3 animation
-            Debug.Log("Playing Recipe 3 Success Animation");
+            ps.Play();  // Trigger the particle effect
         }
         else
         {
-            Debug.LogWarning("Unknown recipe, no animation played.");
+            Debug.LogWarning($"No ParticleSystem component found on {particleObject.name}");
         }
     }
+    else
+    {
+        Debug.LogWarning($"No GameObject found with tag {tagToFind}");
+    }
+}
+
 
     private void EndGame()
     {
