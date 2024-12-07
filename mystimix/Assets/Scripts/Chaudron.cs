@@ -196,35 +196,40 @@ private void PlaySuccessAnimation()
 {
     string tagToFind = "";
 
-    // Determine which particle system tag to use
     if (currentRecipe.SequenceEqual(new List<int> { 1, 4, 7 }))
     {
-        tagToFind = "MagicBuffPink";
-        Debug.Log("Playing Recipe 1 Success Animation");
+        tagToFind = "MagicBuffPink";  
+        Debug.Log("Playing Recipe 1 Success Animation (MagicBuffPink)");
     }
     else if (currentRecipe.SequenceEqual(new List<int> { 2, 5, 8 }))
     {
-        tagToFind = "MagicBuffWhite";
-        Debug.Log("Playing Recipe 2 Success Animation");
+        tagToFind = "MagicBuffWhite";  
+        Debug.Log("Playing Recipe 2 Success Animation (MagicBuffWhite)");
     }
     else if (currentRecipe.SequenceEqual(new List<int> { 3, 6, 9 }))
     {
-        tagToFind = "MagicBuffPurple";
-        Debug.Log("Playing Recipe 3 Success Animation");
+        tagToFind = "MagicBuffPurple"; 
+        Debug.Log("Playing Recipe 3 Success Animation (MagicBuffPurple)");
     }
     else
     {
         Debug.LogWarning("Unknown recipe, no animation played.");
+        return;  
     }
 
-    // Find and play the particle system by tag
     GameObject particleObject = GameObject.FindWithTag(tagToFind);
+    Debug.Log("Tag to Find: " + tagToFind);
+    Debug.Log("Particle Object Found: " + (particleObject != null));
+
     if (particleObject != null)
     {
+        particleObject.SetActive(true); 
         ParticleSystem ps = particleObject.GetComponent<ParticleSystem>();
+        
         if (ps != null)
         {
-            ps.Play();  // Trigger the particle effect
+            ps.Play(); 
+            Debug.Log("Particle system playing: " + tagToFind);
         }
         else
         {
@@ -238,9 +243,9 @@ private void PlaySuccessAnimation()
 }
 
 
+
     private void EndGame()
     {
         Debug.Log("Congratulations! You've completed all the recipes!");
-        // Add end-game animation or logic here
     }
 }
