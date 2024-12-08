@@ -16,6 +16,8 @@ TagManager:
   - Livre-vole
   - Livre-emission
   - canva-debut
+  - MagicBuffWhite
+  - MagicBuffGreen
   layers:
   - Default
   - TransparentFX
