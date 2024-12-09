@@ -1137,7 +1137,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -74430,6 +74430,9 @@ MonoBehaviour:
   - {fileID: 1015487913}
   - {fileID: 438702403}
   - {fileID: 1171281576}
+  magicBuffBlue: {fileID: 1997105705}
+  magicBuffWhite: {fileID: 602139468}
+  magicBuffGreen: {fileID: 2037929516}
 --- !u!1001 &1679665169
 PrefabInstance:
   m_ObjectHideFlags: 0

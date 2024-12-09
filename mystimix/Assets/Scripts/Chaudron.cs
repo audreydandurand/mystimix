@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Chaudron : MonoBehaviour
 {
+    
     [Header("Ingredient Settings")]
     public int totalIngredients = 9; // Total number of ingredients available
     public Transform hiddenStorage;  // A hidden area to store "eaten" ingredients
@@ -14,6 +15,14 @@ public class Chaudron : MonoBehaviour
     private List<int> currentIngredients; // Ingredients currently in the cauldron
 
     private Dictionary<int, GameObject> ingredientObjects; // Tracks ingredient IDs and their corresponding GameObjects
+
+    public GameObject magicBuffBlue;
+    public GameObject magicBuffWhite;
+    public GameObject magicBuffGreen;
+    // Predefined recipes
+    private List<int> recipe1;
+    private List<int> recipe2;
+    private List<int> recipe3;
 
     private void Start()
     {
@@ -29,34 +38,47 @@ public class Chaudron : MonoBehaviour
         }
 
         currentIngredients = new List<int>();
+
+        // Generate fixed recipes
+        GenerateFixedRecipes();
+
+        // Start with the first recipe
         GenerateNewRecipe();
     }
 
-    private void GenerateNewRecipe()
+    private void GenerateFixedRecipes()
     {
-        if (unusedIngredients.Count < 3)
-        {
-            Debug.Log("Not enough ingredients left for a new recipe. Game over!");
-            EndGame();
-            return;
-        }
-
-        currentRecipe = new List<int>();
-
         // Ingredients for each group
         List<int> group1 = new List<int> { 1, 2, 3 };
         List<int> group2 = new List<int> { 4, 5, 6 };
         List<int> group3 = new List<int> { 7, 8, 9 };
 
-        // Pick one ingredient from each group
-        currentRecipe.Add(group1[Random.Range(0, group1.Count)]);
-        currentRecipe.Add(group2[Random.Range(0, group2.Count)]);
-        currentRecipe.Add(group3[Random.Range(0, group3.Count)]);
+        // Randomly select one ingredient from each group for each recipe
+        recipe1 = new List<int> { group1[Random.Range(0, group1.Count)], group2[Random.Range(0, group2.Count)], group3[Random.Range(0, group3.Count)] };
+        recipe2 = new List<int> { group1[Random.Range(0, group1.Count)], group2[Random.Range(0, group2.Count)], group3[Random.Range(0, group3.Count)] };
+        recipe3 = new List<int> { group1[Random.Range(0, group1.Count)], group2[Random.Range(0, group2.Count)], group3[Random.Range(0, group3.Count)] };
 
-        // Remove the selected ingredients from the unusedIngredients pool
-        foreach (var ingredientID in currentRecipe)
+        Debug.Log($"Recipe 1: {string.Join(", ", recipe1)}");
+        Debug.Log($"Recipe 2: {string.Join(", ", recipe2)}");
+        Debug.Log($"Recipe 3: {string.Join(", ", recipe3)}");
+    }
+
+    private void GenerateNewRecipe()
+    {
+        // Randomly choose one of the predefined recipes
+        int randomRecipe = Random.Range(1, 4);
+
+        switch (randomRecipe)
         {
-            unusedIngredients.Remove(ingredientID);
+            case 1:
+                currentRecipe = new List<int>(recipe1);
+                break;
+            case 2:
+                currentRecipe = new List<int>(recipe2);
+                break;
+            case 3:
+                currentRecipe = new List<int>(recipe3);
+                break;
         }
 
         Debug.Log("New recipe generated: " + string.Join(", ", currentRecipe));
@@ -191,65 +213,47 @@ public class Chaudron : MonoBehaviour
             }
         }
     }
-private bool hasPlayedRecipe1 = false;
-private bool hasPlayedRecipe2 = false;
-private bool hasPlayedRecipe3 = false;
 
-private void PlaySuccessAnimation()
-{
-    string tagToFind = "";
-    if (currentRecipe.SequenceEqual(new List<int> { 1, 4, 7 }) && !hasPlayedRecipe1)
+    private void PlaySuccessAnimation()
     {
-        tagToFind = "MagicBuffPink";
-        hasPlayedRecipe1 = true; 
-        Debug.Log("Playing Recipe 1 Success Animation (MagicBuffPink)");
-    }
-    else if (currentRecipe.SequenceEqual(new List<int> { 2, 5, 8 }) && !hasPlayedRecipe2)
-    {
-        tagToFind = "MagicBuffWhite";
-        hasPlayedRecipe2 = true;
-        Debug.Log("Playing Recipe 2 Success Animation (MagicBuffWhite)");
-    }
-    else if (currentRecipe.SequenceEqual(new List<int> { 3, 6, 9 }) && !hasPlayedRecipe3)
-    {
-        tagToFind = "MagicBuffPurple";
-        hasPlayedRecipe3 = true; 
-        Debug.Log("Playing Recipe 3 Success Animation (MagicBuffPurple)");
-    }
-    else
-    {
-        Debug.LogWarning("Unknown recipe or already played, no animation played.");
-        return; 
-    }
+        // Trouver les GameObjects pour les différents buffs
+        GameObject magicBuffWhite = GameObject.Find("MagicBuffWhite");
+        GameObject magicBuffGreen = GameObject.Find("MagicBuffGreen");
+        GameObject magicBuffBlue = GameObject.Find("MagicBuffBlue");
 
-    GameObject particleObject = GameObject.FindWithTag(tagToFind);
-    Debug.Log("Tag to Find: " + tagToFind);
-    Debug.Log("Particle Object Found: " + (particleObject != null));
-
-    if (particleObject != null)
-    {
-        particleObject.SetActive(true);
-
-        ParticleSystem ps = particleObject.GetComponent<ParticleSystem>();
-        
-        if (ps != null)
+        // Vérifier si les GameObjects existent
+        if (magicBuffWhite != null && magicBuffGreen != null && magicBuffBlue != null)
         {
-            ps.Play(); 
-            Debug.Log("Particle system playing: " + tagToFind);
+            // Désactiver tous les buffs au début
+            magicBuffWhite.SetActive(false);
+            magicBuffGreen.SetActive(false);
+            magicBuffBlue.SetActive(false);
+
+            // Vérifier la recette et activer le bon buff
+            if (currentRecipe.SequenceEqual(recipe1))
+            {
+                magicBuffWhite.SetActive(true);  // Active le buff correspondant à la recette 1
+                Debug.Log("Playing Recipe 1 Success Animation (MagicBuffWhite)");
+            }
+            else if (currentRecipe.SequenceEqual(recipe2))
+            {
+                magicBuffGreen.SetActive(true);  // Active le buff correspondant à la recette 2
+                Debug.Log("Playing Recipe 2 Success Animation (MagicBuffGreen)");
+            }
+            else if (currentRecipe.SequenceEqual(recipe3))
+            {
+                magicBuffBlue.SetActive(true);   // Active le buff correspondant à la recette 3
+                Debug.Log("Playing Recipe 3 Success Animation (MagicBuffBlue)");
+            }
+            else
+            {
+                Debug.LogWarning("Unknown recipe or already played, no animation played.");
+                return;
+            }
         }
         else
         {
-            Debug.LogWarning($"No ParticleSystem component found on {particleObject.name}");
+            Debug.LogWarning("One or more magic buff GameObjects not found!");
         }
-    }
-    else
-    {
-        Debug.LogWarning($"No GameObject found with tag {tagToFind}");
-    }
-}
-
-    private void EndGame()
-    {
-        Debug.Log("Congratulations! You've completed all the recipes!");
     }
 }
