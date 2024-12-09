@@ -32,13 +32,4 @@ public class Chronometre : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, secondes, millisecondes);
     }
-
-    public string GetFormattedFinalTime()
-    {
-        int minutes = Mathf.FloorToInt(finalTime / 60f);
-        int secondes = Mathf.FloorToInt(finalTime % 60f);
-        int millisecondes = Mathf.FloorToInt((finalTime * 1000) % 1000);
-
-        return string.Format("{0:00}:{1:00}:{2:000}", minutes, secondes, millisecondes);
-    }
 }

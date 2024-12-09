@@ -21,6 +21,7 @@ public class Chaudron : MonoBehaviour
     public GameObject magicBuffWhite;
     public GameObject magicBuffGreen;
     public GameObject Canvas_end;
+    public GameObject Chronometre;
 
     // Predefined recipes
     private List<int> recipe1;
@@ -280,14 +281,13 @@ public class Chaudron : MonoBehaviour
             magicBuffPink.SetActive(true);   // Active le buff correspondant à la recette 3
             yield return new WaitForSeconds(5f);
             magicBuffPink.SetActive(false);
+            Destroy(Chronometre);
             Canvas_end.SetActive(true);
             Debug.Log("Playing Recipe 3 Success Animation (MagicBuffBlue)");
-
         }
         else
         {
             Debug.LogWarning("Unknown recipe or already played, no animation played.");
-            
         }
         yield break;
     }

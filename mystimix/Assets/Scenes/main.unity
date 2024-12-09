@@ -5526,57 +5526,57 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1474651338}
+    m_TransformParent: {fileID: 529264753}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 165.50468
+      value: 2484.058
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 122.35278
+      value: 3275.6846
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 100
+      value: 3153.219
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.218
+      value: 2.234848
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.415
+      value: 6.3265605
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.531
+      value: 310.47614
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99352
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.11365743
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.99352
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.11365743
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
@@ -5601,12 +5601,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_Name
-      value: livre-vole (1)
+      value: livre-canvas
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7e6ea8879a7de814c949e7e62247adef,
         type: 3}
       propertyPath: m_TagString
-      value: Livre-vole
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16067,7 +16067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &529264752
 Canvas:
   m_ObjectHideFlags: 0
@@ -16108,6 +16108,7 @@ RectTransform:
   - {fileID: 1170917421}
   - {fileID: 362584076}
   - {fileID: 2093976287}
+  - {fileID: 265192846}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -26650,7 +26651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &552957806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42576,6 +42577,7 @@ MonoBehaviour:
   craieAudioSource: {fileID: 188958579}
   lanterneAudioSource: {fileID: 363034257}
   bookUpDownAnimator: {fileID: 1998550035}
+  canvas_livre: {fileID: 529264751}
   marcherAudioObject: {fileID: 290831616}
   tapisLumieux: {fileID: 32924680}
   carpetLumieux: {fileID: 32924680}
@@ -64791,7 +64793,6 @@ Transform:
   - {fileID: 604131864}
   - {fileID: 106169305}
   - {fileID: 1998550034}
-  - {fileID: 265192846}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1475298418 stripped
@@ -70173,6 +70174,7 @@ MonoBehaviour:
   magicBuffWhite: {fileID: 602139468}
   magicBuffGreen: {fileID: 2037929516}
   Canvas_end: {fileID: 552957805}
+  Chronometre: {fileID: 1654214414}
 --- !u!1001 &1679665169
 PrefabInstance:
   m_ObjectHideFlags: 0
