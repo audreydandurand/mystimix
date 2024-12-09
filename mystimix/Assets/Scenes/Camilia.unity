@@ -20020,7 +20020,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Vous avez completer le jeux!
+  m_text: "Vous avez complet\xE9 le jeu !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 211c92eda1f49e540b7bc8a236b99d4e, type: 2}
   m_sharedMaterial: {fileID: 2620780983476853924, guid: 211c92eda1f49e540b7bc8a236b99d4e,
@@ -45661,7 +45661,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continuer de jouer
+  m_text: Recommencer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 211c92eda1f49e540b7bc8a236b99d4e, type: 2}
   m_sharedMaterial: {fileID: 2620780983476853924, guid: 211c92eda1f49e540b7bc8a236b99d4e,
@@ -58291,7 +58291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Voulez vous continuer de faire les recettes?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 211c92eda1f49e540b7bc8a236b99d4e, type: 2}
   m_sharedMaterial: {fileID: 2620780983476853924, guid: 211c92eda1f49e540b7bc8a236b99d4e,
@@ -78128,6 +78128,9 @@ MonoBehaviour:
   - {fileID: 1300226926}
   - {fileID: 268900527}
   - {fileID: 1565260360}
+  magicBuffPink: {fileID: 0}
+  magicBuffWhite: {fileID: 0}
+  magicBuffGreen: {fileID: 0}
 --- !u!1001 &1563641335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90353,7 +90356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: merci a Poly Pizza pour les models 3D
+  m_text: "Mod\xE8les de Poly Pizza"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 211c92eda1f49e540b7bc8a236b99d4e, type: 2}
   m_sharedMaterial: {fileID: 2620780983476853924, guid: 211c92eda1f49e540b7bc8a236b99d4e,
