@@ -163,14 +163,6 @@ public class Joueur : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Carpet-lumineux"))
-        {
-            // Activer l'objet Carpet-lumineux lorsque le joueur entre dans la zone
-            if (carpetLumieux != null)
-            {
-                carpetLumieux.SetActive(true);
-            }
-        }
 
         if (other.CompareTag("Table") && !livreAnime)
         {
@@ -243,14 +235,10 @@ public class Joueur : MonoBehaviour
             {
                 tapisLumieux.SetActive(false);
             }
-        }
 
-        if (other.CompareTag("Tapis-lumineux"))
-        {
-            // Désactiver l'objet Carpet-lumineux lorsque le joueur quitte la zone
-            if (carpetLumieux != null)
+            if (tapisLumieux != null)
             {
-                carpetLumieux.SetActive(false);
+                tapisLumieux.SetActive(false);
             }
         }
 
