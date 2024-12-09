@@ -20,6 +20,7 @@ public class Chaudron : MonoBehaviour
     public GameObject magicBuffPink;
     public GameObject magicBuffWhite;
     public GameObject magicBuffGreen;
+    public GameObject Canvas_end;
 
     // Predefined recipes
     private List<int> recipe1;
@@ -33,6 +34,7 @@ public class Chaudron : MonoBehaviour
     private List<int> group1 = new List<int> { 1, 2, 3 };
     private List<int> group2 = new List<int> { 4, 5, 6 };
     private List<int> group3 = new List<int> { 7, 8, 9 };
+
 
     private void Start()
     {
@@ -256,6 +258,7 @@ public class Chaudron : MonoBehaviour
         magicBuffWhite.SetActive(false);
         magicBuffGreen.SetActive(false);
         magicBuffPink.SetActive(false);
+        Canvas_end.SetActive(false);
 
         // Vérifier la recette et activer le bon buff
         if (currentRecipe.SequenceEqual(recipe1))
@@ -277,7 +280,9 @@ public class Chaudron : MonoBehaviour
             magicBuffPink.SetActive(true);   // Active le buff correspondant à la recette 3
             yield return new WaitForSeconds(5f);
             magicBuffPink.SetActive(false);
+            Canvas_end.SetActive(true);
             Debug.Log("Playing Recipe 3 Success Animation (MagicBuffBlue)");
+
         }
         else
         {

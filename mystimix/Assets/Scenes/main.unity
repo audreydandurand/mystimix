@@ -7866,7 +7866,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 392370175}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 967179621}
+        m_TargetAssemblyTypeName: Joueur, Assembly-CSharp
+        m_MethodName: quitterPartie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &392370175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26638,7 +26650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &552957806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70160,6 +70172,7 @@ MonoBehaviour:
   magicBuffPink: {fileID: 545015713}
   magicBuffWhite: {fileID: 602139468}
   magicBuffGreen: {fileID: 2037929516}
+  Canvas_end: {fileID: 552957805}
 --- !u!1001 &1679665169
 PrefabInstance:
   m_ObjectHideFlags: 0

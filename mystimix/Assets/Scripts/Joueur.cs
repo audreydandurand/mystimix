@@ -31,6 +31,7 @@ public class Joueur : MonoBehaviour
     public AudioSource craieAudioSource;
     public AudioSource lanterneAudioSource;
     public Animator bookUpDownAnimator;
+    public GameObject canvas_livre;
 
     // Son de marche
     public GameObject marcherAudioObject;
@@ -280,12 +281,13 @@ public class Joueur : MonoBehaviour
 private IEnumerator ArreterAnimationLivre()
 {
     livreAnime = true;
+        canvas_livre.SetActive(false);
+        // Attendre la durée de l'animation
+        yield return new WaitForSeconds(1.3f);
+        canvas_livre.SetActive(true);
 
-    // Attendre la durée de l'animation
-    yield return new WaitForSeconds(1.3f);  
-
-    // Désactiver l'Animator et supprimer le livre
-    if (bookUpDownAnimator != null)
+        // Désactiver l'Animator et supprimer le livre
+        if (bookUpDownAnimator != null)
     {
         bookUpDownAnimator.enabled = false;
     }
